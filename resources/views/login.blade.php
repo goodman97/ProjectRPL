@@ -17,17 +17,18 @@
         <input type="password" name="password" placeholder="Masukkan password">
       </div>
 
-      <button type="submit" class="login-button">Log-in</button>
+      <div class="button-fish-container">
+        <img src="{{ asset('asset/fish2.png') }}" alt="Ikan 2" class="fish fish-right">
+
+        <button type="submit" class="login-button">Log-in</button>
+        
+        <img src="{{ asset('asset/fish1.png') }}" alt="Ikan 1" class="fish fish-left">
+      </div>
 
       @if($errors->any())
         <p class="error-message">{{ $errors->first() }}</p>
       @endif
     </form>
-
-    <div class="illustration">
-      <img src="{{ asset('img/ikan1.png') }}" alt="Ikan 1">
-      <img src="{{ asset('img/ikan2.png') }}" alt="Ikan 2">
-    </div>
   </div>
 
 </body>

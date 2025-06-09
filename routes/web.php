@@ -9,9 +9,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::get('/hallodunia', [TestController::class, 'show']);
+/*Route::get('/hallodunia', [TestController::class, 'show']);
 
-route::get('/login', [LoginController::class, 'show']);
+Route::get('/login', [LoginController::class, 'show']);
 
 Route::get('/login', [ControllerSiswa::class, 'showLoginForm'])->name('login');
 Route::post('/login', [ControllerSiswa::class, 'login']);
@@ -23,7 +23,14 @@ Route::get('/dashboard', function () {
     return 'Selamat datang, ' . session('nama_siswa');
 });
 
+
 Route::get('/logout', function () {
     session()->flush();
     return redirect('/login');
-});
+});*/
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout']);
+
+Route::get('/dashboardsiswa', [ControllerSiswa::class, 'dashboard']);
