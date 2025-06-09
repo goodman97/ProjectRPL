@@ -8,19 +8,27 @@
 </head>
 <body>
 
-    <div class="login-container">
-    <div class="form-box">
-        <input type="text" placeholder="Masukkan username">
-        <input type="password" placeholder="Masukkan password">
-    </div>
-    
-    <button class="login-button">Log-in</button>
+  <div class="login-container">
+    <form action="{{ url('/login') }}" method="POST">
+      @csrf
+
+      <div class="form-box">
+        <input type="text" name="username" placeholder="Masukkan username" value="{{ old('username') }}">
+        <input type="password" name="password" placeholder="Masukkan password">
+      </div>
+
+      <button type="submit" class="login-button">Log-in</button>
+
+      @if($errors->any())
+        <p class="error-message">{{ $errors->first() }}</p>
+      @endif
+    </form>
 
     <div class="illustration">
-        <img src="ikan1.png" alt="Ikan 1">
-        <img src="ikan2.png" alt="Ikan 2">
+      <img src="{{ asset('img/ikan1.png') }}" alt="Ikan 1">
+      <img src="{{ asset('img/ikan2.png') }}" alt="Ikan 2">
     </div>
-    </div>
+  </div>
 
 </body>
 </html>
