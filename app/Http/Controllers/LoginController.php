@@ -52,6 +52,7 @@ class LoginController extends Controller
                 Session::put('siswa_id', $id); // Tambahkan ini
                 return redirect('dashboardsiswa');
             } elseif ($user->nama_role === 'guru') {
+                Session::put('guru_id', $id);
                 return redirect('dashboardguru');
             } elseif ($user->nama_role === 'operator') {
                  Session::put('operator_id', $id);
