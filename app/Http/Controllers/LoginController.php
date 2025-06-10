@@ -54,6 +54,7 @@ class LoginController extends Controller
             } elseif ($user->nama_role === 'guru') {
                 return redirect('dashboardguru');
             } elseif ($user->nama_role === 'operator') {
+                 Session::put('operator_id', $id);
                 return redirect('dashboardoperator');
             } else {
                 return back()->withErrors(['login' => 'Role tidak dikenali.']);
