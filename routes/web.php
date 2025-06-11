@@ -37,15 +37,17 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::get('/dashboardsiswa', [ControllerSiswa::class, 'dashboard']);
 
-Route::get('/dashboardguru', [ControllerGuru::class, 'dashboard']);
+Route::get('/dashboardguru', [ControllerGuru::class, 'dashboard'])->name('dashboardguru');
 Route::get('/inputkelasguru', [ControllerGuru::class, 'inputKelas']);
 Route::get('/inputjadwalguru', [ControllerGuru::class, 'inputJadwal']);
 Route::get('/lihatlabguru', [ControllerGuru::class, 'infoLab']);
 Route::get('/lihatlaporanguru', [ControllerGuru::class, 'infoLaporan']);
-Route::get('/dashboardoperator', [ControllerOperator::class, 'dashboard']);
+Route::get('/profileguru', [ControllerGuru::class, 'profil'])->name('profileguru');
 
 Route::get('/dashboardoperator', [ControllerOperator::class, 'dashboard']);
 Route::get('/lihatjadwal', [ControllerOperator::class, 'lihatjadwal']);
 Route::get('/accjadwal', [ControllerOperator::class, 'accjadwal']);
 Route::get('/infolab', [ControllerOperator::class, 'infolab']);
 Route::get('/infoakun', [ControllerOperator::class, 'infoakun']);
+Route::get('/statuslab', [ControllerOperator::class, 'statusLab'])->name('statuslab');
+Route::post('/statuslab/update', [ControllerOperator::class, 'updateStatusLab'])->name('statuslab.update');

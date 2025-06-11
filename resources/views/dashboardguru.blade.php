@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/siswamenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/gurumenu.css') }}">
     <title>Menu Guru</title>
 </head>
 <body>
@@ -13,10 +13,12 @@
             </a>
             <img src="{{ asset('asset/logo.png') }}" alt="Logo" class="mainlogo">
 
-            @if(session('nama_guru'))
-                <p><strong>Nama:</strong> {{ session('nama_guru') }}</p>
-                <p><strong>NIP:</strong> {{ session('nip') }}</p>
+            @if($guru)
+                <p><strong>Nama:</strong> {{ $guru->nama }}</p>
+                <p><strong>NIP:</strong> {{ $guru->nip }}</p>
             @endif
+
+            <img src="{{ asset('asset/wave.png') }}" alt="Logo" class="wave">
 
             <nav class="navbar sticky-bottom navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">

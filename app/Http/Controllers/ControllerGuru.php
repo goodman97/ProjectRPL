@@ -39,7 +39,9 @@ class ControllerGuru extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('dashboardguru');
+        $guru = Guru::where('id_guru', session('guru_id'))->first();
+
+        return view('dashboardguru', compact('guru'));
     }
 
     public function inputKelas()
@@ -74,6 +76,17 @@ class ControllerGuru extends Controller
         }
 
         return view('lihatlaporanguru');
+    }
+
+    public function profil()
+    {
+        if (!session()->has('guru_id')) {
+            return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
+        }
+
+        $guru = Guru::where('id_guru', session('guru_id'))->first();
+
+        return view('profileguru', compact('guru'));
     }
 
 }
