@@ -10,8 +10,5 @@ class Labolatorium extends Model
     protected $primaryKey = 'id_lab';
     public $timestamps = false;
 
-    protected $fillable = [
-        'nama_lab',
-        'status',
-    ];
+    protected $fillable = ['nama_lab', 'status'];
 }

@@ -62,12 +62,8 @@ class ControllerOperator extends Controller
         return view('accjadwal');
     }
 
-    public function infolab()
+    public function statusLab()
     {
-        if (!session()->has('operator_id')) {
-            return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
-        }
-
         $labs = Labolatorium::all();
         return view('infolab', compact('labs'));
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Guru;
+use App\Models\Labolatorium;
 
 class ControllerGuru extends Controller
 {
@@ -67,7 +68,8 @@ class ControllerGuru extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('lihatlabguru');
+        $labs = Labolatorium::all();
+        return view('lihatlabguru', compact('labs'));
     }
     public function infoLaporan()
     {

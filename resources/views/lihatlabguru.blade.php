@@ -11,6 +11,14 @@
             <a class="profile" href="{{ url('/profileguru') }}">
                 <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
             </a>
+
+            @foreach($labs as $lab)
+                
+                        <h5>{{ $lab->nama_lab }}</h5>
+                        <p>Status: <strong>{{ $lab->status }}</strong></p>
+                    
+            @endforeach
+
             <nav class="navbar sticky-bottom navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
