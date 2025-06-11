@@ -19,20 +19,17 @@
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            <a class="nav-link active" href="#">
+                            <a class="nav-link active" href="{{ url('/dashboardoperator')}}">
                                 <img src="{{ asset('asset/VectorB1.png') }}" alt="Logo" class="logo">
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ url('/lihatjadwal')}}">
                                 <img src="{{ asset('asset/Vector3.png') }}" alt="Logo" class="logo">
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ url('/accjadwal')}}">
                                 <img src="{{ asset('asset/Vector4.png') }}" alt="Logo" class="logo">
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ url('/infolab')}}">
                                 <img src="{{ asset('asset/Vector6.png') }}" alt="Logo" class="logo">
-                            </a>
-                            <a class="nav-link" href="#">
-                                <img src="{{ asset('asset/Vector5.png') }}" alt="Logo" class="logo">
                             </a>
                         </div>
                     </div>

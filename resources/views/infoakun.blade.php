@@ -23,16 +23,16 @@
                                 <img src="{{ asset('asset/Vector1.png') }}" alt="Logo" class="logo">
                             </a>
                             <a class="nav-link" href="{{ url('/lihatjadwal')}}">
-                                <img src="{{ asset('asset/VectorB3.png') }}" alt="Logo" class="logo">
+                                <img src="{{ asset('asset/Vector3.png') }}" alt="Logo" class="logo">
                             </a>
                             <a class="nav-link" href="{{ url('/accjadwal')}}">
                                 <img src="{{ asset('asset/Vector4.png') }}" alt="Logo" class="logo">
                             </a>
-                            <a class="nav-link" href="{{ url('/lihatinfolab')}}">
+                            <a class="nav-link" href="{{ url('/infolab')}}">
                                 <img src="{{ asset('asset/Vector6.png') }}" alt="Logo" class="logo">
                             </a>
                             <a class="nav-link" href="{{ url('/infoakun')}}">
-                                <img src="{{ asset('asset/Vector5.png') }}" alt="Logo" class="logo">
+                                <img src="{{ asset('asset/VectorB5.png') }}" alt="Logo" class="logo">
                             </a>
                         </div>
                     </div>

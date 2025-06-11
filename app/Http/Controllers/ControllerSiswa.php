@@ -43,5 +43,32 @@ class ControllerSiswa extends Controller
         return view('dashboardsiswa');
     }
 
+    public function lihatjadwal()
+    {
+        if (!session()->has('siswa_id')) {
+            return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
+        }
+
+        return view('lihatjadwal');
+    }
+
+    public function accjadwal()
+    {
+        if (!session()->has('siswa_id')) {
+            return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
+        }
+
+        return view('accjadwal');
+    }
+
+    public function infolab()
+    {
+        if (!session()->has('siswa_id')) {
+            return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
+        }
+
+        return view('infolab');
+    }
+
 }
 

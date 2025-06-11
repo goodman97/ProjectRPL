@@ -46,24 +46,28 @@ class ControllerOperator extends Controller
 
     public function lihatjadwal()
     {
-        if (!session()->has('operator_id')) {
+        /*if (!session()->has('operator_id')) {
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
-        }
+        }*/
 
         return view('lihatjadwal');
     }
 
     public function accjadwal()
     {
-        if (!session()->has('operator_id')) {
+        /*if (!session()->has('operator_id')) {
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
-        }
+        }*/
 
         return view('accjadwal');
     }
 
     public function statusLab()
     {
+        if (!session()->has('operator_id')) {
+            return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
+        }
+
         $labs = Labolatorium::all();
         return view('infolab', compact('labs'));
     }
@@ -84,9 +88,9 @@ class ControllerOperator extends Controller
 
     public function infoakun()
     {
-        if (!session()->has('operator_id')) {
+        /*if (!session()->has('operator_id')) {
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
-        }
+        }*/
 
         return view('infoakun');
     }
