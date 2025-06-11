@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use APP\Model\Operator;
+use App\Models\Labolatorium;
 use Illuminate\Support\Facades\Hash;
 
 class ControllerOperator extends Controller
@@ -67,7 +68,22 @@ class ControllerOperator extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('infolab');
+        $labs = Labolatorium::all();
+        return view('infolab', compact('labs'));
+    }
+
+    public function updateStatusLab(Request $request)
+    {
+        $request->validate([
+            'id_lab' => 'required|exists:labolatorium,id_lab',
+            'status' => 'required|in:Tersedia,Tidak tersedia'
+        ]);
+
+        $lab = Labolatorium::find($request->id_lab);
+        $lab->status = $request->status;
+        $lab->save();
+
+        return redirect()->route('statuslab')->with('success', 'Status lab berhasil diperbarui.');
     }
 
     public function infoakun()
