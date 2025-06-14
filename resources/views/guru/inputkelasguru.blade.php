@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/siswamenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/gurumenu.css') }}">
     <title>Input Kelas</title>
 </head>
 <body>
     <div class="container col-lg-4 mt-5">
         <div class="card mb-3">
             <a class="profile" href="{{ url('/profileguru') }}">
+                <img src="{{ $guru->foto ? asset('foto_guru/' . $guru->foto) : asset('asset/default.png') }}" alt="Foto Guru" class="pf">
                 <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
             </a>
+            
             <nav class="navbar sticky-bottom navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">

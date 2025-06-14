@@ -10,6 +10,7 @@
     <div class="card mb-3">
 
             <a class="profile" href="{{ url('/dashboardguru') }}">
+                <img src="{{ $guru->foto ? asset('foto_guru/' . $guru->foto) : asset('asset/default.png') }}" alt="Foto Guru" class="pf">
                 <img src="{{ asset('asset/profilebar.png') }}" alt="Logo" class="pfbar">
                 <div class="guru-info">
                     <p><strong>{{ $guru->nama }}</strong></p>
@@ -33,7 +34,7 @@
         </div>
 
         <div class="btn-group mt-3 mb-3">
-            <a href="#" class="btn-edit btn-primary">Edit Profil (belum dibuat)</a>
+            <a href="{{ url('/editprofileguru') }}" class="btn-edit btn-primary">Edit Profil</a>
             <a href="/logout" class="btn-logout btn-danger">Logout</a>
         </div>
         <img src="{{ asset('asset/wave.png') }}" alt="Wave" class="wave">

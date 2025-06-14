@@ -51,7 +51,8 @@ class ControllerGuru extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('guru.inputkelasguru');
+        $guru = Guru::where('id_guru', session('guru_id'))->first();
+        return view('guru.inputkelasguru', compact('guru'));
     }
 
     public function inputJadwal()
@@ -60,7 +61,8 @@ class ControllerGuru extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('guru.inputjadwalguru');
+        $guru = Guru::where('id_guru', session('guru_id'))->first();
+        return view('guru.inputjadwalguru', compact('guru'));
     }
     public function infoLab()
     {
@@ -68,8 +70,10 @@ class ControllerGuru extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
+        $guru = Guru::where('id_guru', session('guru_id'))->first();
         $labs = Labolatorium::all();
-        return view('guru.lihatlabguru', compact('labs'));
+
+        return view('guru.lihatlabguru', compact('labs', 'guru'));
     }
     public function infoLaporan()
     {
@@ -77,7 +81,9 @@ class ControllerGuru extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('guru.lihatlaporanguru');
+        $guru = Guru::where('id_guru', session('guru_id'))->first();
+
+        return view('guru.lihatlaporanguru', compact('guru'));
     }
 
     public function profil()
@@ -89,6 +95,35 @@ class ControllerGuru extends Controller
         $guru = Guru::where('id_guru', session('guru_id'))->first();
 
         return view('guru.profileguru', compact('guru'));
+    }
+
+    public function editProfile()
+    {
+        if (!session()->has('guru_id')) return redirect('/login');
+        $guru = Guru::where('id_guru', session('guru_id'))->first();
+        return view('guru.editprofileguru', compact('guru'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        $guru = Guru::where('id_guru', session('guru_id'))->first();
+        $guru->email = $request->email;
+
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('foto_guru'), $filename);
+            $guru->foto = $filename;
+        }
+
+        $guru->save();
+
+        return redirect('/profileguru')->with('success', 'Profil berhasil diperbarui.');
     }
 
 }
