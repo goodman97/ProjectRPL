@@ -83,7 +83,7 @@ class ControllerOperator extends Controller
         $lab->status = $request->status;
         $lab->save();
 
-        return redirect()->route('operator.statuslab')->with('success', 'Status lab berhasil diperbarui.');
+        return redirect()->route('statuslab')->with('success', 'Status lab berhasil diperbarui.');
     }
 
     public function profile()
