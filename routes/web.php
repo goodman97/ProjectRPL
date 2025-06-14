@@ -35,7 +35,12 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
-Route::get('/dashboardsiswa', [ControllerSiswa::class, 'dashboard']);
+Route::get('/dashboardsiswa', [ControllerSiswa::class, 'dashboard'])->name('dashboardsiswa');
+Route::get('/lihatjadwalsiswa', [ControllerSiswa::class, 'lihatJadwal']);
+Route::get('/lihatlabsiswa', [ControllerSiswa::class, 'infoLab'])->name('lihatlabsiswa');
+Route::get('/buatlaporansiswa', [ControllerSiswa::class, 'buatLaporan']);
+Route::get('/lihatlaporansiswa', [ControllerSiswa::class, 'lihatLaporan']);
+Route::get('/profilesiswa', [ControllerSiswa::class, 'profil'])->name('profilesiswa');
 
 Route::get('/dashboardguru', [ControllerGuru::class, 'dashboard'])->name('dashboardguru');
 Route::get('/inputkelasguru', [ControllerGuru::class, 'inputKelas']);
@@ -44,9 +49,10 @@ Route::get('/lihatlabguru', [ControllerGuru::class, 'infoLab'])->name('lihatlabg
 Route::get('/lihatlaporanguru', [ControllerGuru::class, 'infoLaporan']);
 Route::get('/profileguru', [ControllerGuru::class, 'profil'])->name('profileguru');
 
-Route::get('/dashboardoperator', [ControllerOperator::class, 'dashboard']);
+Route::get('/dashboardoperator', [ControllerOperator::class, 'dashboard'])->name('dashboardoperator');
 Route::get('/lihatjadwal', [ControllerOperator::class, 'lihatjadwal']);
 Route::get('/accjadwal', [ControllerOperator::class, 'accjadwal']);
 Route::get('/infoakun', [ControllerOperator::class, 'infoakun']);
 Route::get('/infolab', [ControllerOperator::class, 'statusLab'])->name('statuslab');
 Route::post('/infolab/update', [ControllerOperator::class, 'updateStatusLab'])->name('statuslab.update');
+Route::get('/profile', [ControllerOperator::class, 'profile'])->name('profile');

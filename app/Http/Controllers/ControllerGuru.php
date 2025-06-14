@@ -28,7 +28,7 @@ class ControllerGuru extends Controller
                 'nama_guru' => $guru->nama_guru,
                 'nip' => $guru->nip
             ]);
-            return view('dashboardguru');
+            return view('guru.dashboardguru');
         } else {
             return back()->withErrors(['login' => 'Username atau Password salah.']);
         }
@@ -42,7 +42,7 @@ class ControllerGuru extends Controller
 
         $guru = Guru::where('id_guru', session('guru_id'))->first();
 
-        return view('dashboardguru', compact('guru'));
+        return view('guru.dashboardguru', compact('guru'));
     }
 
     public function inputKelas()
@@ -51,7 +51,7 @@ class ControllerGuru extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('inputkelasguru');
+        return view('guru.inputkelasguru');
     }
 
     public function inputJadwal()
@@ -60,7 +60,7 @@ class ControllerGuru extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('inputjadwalguru');
+        return view('guru.inputjadwalguru');
     }
     public function infoLab()
     {
@@ -69,7 +69,7 @@ class ControllerGuru extends Controller
         }
 
         $labs = Labolatorium::all();
-        return view('lihatlabguru', compact('labs'));
+        return view('guru.lihatlabguru', compact('labs'));
     }
     public function infoLaporan()
     {
@@ -77,7 +77,7 @@ class ControllerGuru extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('lihatlaporanguru');
+        return view('guru.lihatlaporanguru');
     }
 
     public function profil()
@@ -88,7 +88,7 @@ class ControllerGuru extends Controller
 
         $guru = Guru::where('id_guru', session('guru_id'))->first();
 
-        return view('profileguru', compact('guru'));
+        return view('guru.profileguru', compact('guru'));
     }
 
 }

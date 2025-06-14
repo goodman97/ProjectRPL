@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-Use APP\Model\Operator;
+Use App\Models\Operator;
 use App\Models\Labolatorium;
-use Illuminate\Support\Facades\Hash;
 
 class ControllerOperator extends Controller
 {
@@ -26,10 +25,9 @@ class ControllerOperator extends Controller
         if ($operator && $request->password == $operator->password) {
             session([
                 'operator_id' => $operator->id, 
-                'nama_operator' => $operator->nama_operator,
-                'nis' => $operator->nis
+                'nama_operator' => $operator->nama_operator
             ]);
-            return view('dashboardoperator');
+            return view('operator.dashboardoperator');
         } else {
             return back()->withErrors(['login' => 'Username atau Password salah.']);
         }
@@ -41,7 +39,9 @@ class ControllerOperator extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('dashboardoperator');
+        $operator = Operator::where('id_operator', session('operator_id'))->first();
+
+        return view('operator.dashboardoperator', compact('operator'));
     }
 
     public function lihatjadwal()
@@ -50,7 +50,7 @@ class ControllerOperator extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }*/
 
-        return view('lihatjadwal');
+        return view('operator.lihatjadwal');
     }
 
     public function accjadwal()
@@ -59,7 +59,7 @@ class ControllerOperator extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }*/
 
-        return view('accjadwal');
+        return view('operator.accjadwal');
     }
 
     public function statusLab()
@@ -69,7 +69,7 @@ class ControllerOperator extends Controller
         }
 
         $labs = Labolatorium::all();
-        return view('infolab', compact('labs'));
+        return view('operator.infolab', compact('labs'));
     }
 
     public function updateStatusLab(Request $request)
@@ -83,15 +83,17 @@ class ControllerOperator extends Controller
         $lab->status = $request->status;
         $lab->save();
 
-        return redirect()->route('statuslab')->with('success', 'Status lab berhasil diperbarui.');
+        return redirect()->route('operator.statuslab')->with('success', 'Status lab berhasil diperbarui.');
     }
 
-    public function infoakun()
+    public function profile()
     {
-        /*if (!session()->has('operator_id')) {
+        if (!session()->has('operator_id')) {
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
-        }*/
+        }
 
-        return view('infoakun');
+        $operator = Operator::where('id_operator', session('operator_id'))->first();
+
+        return view('operator.profile', compact('operator'));
     }
 }

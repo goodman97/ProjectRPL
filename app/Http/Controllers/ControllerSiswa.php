@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Siswa;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Labolatorium;
 
 class ControllerSiswa extends Controller
 {
@@ -28,7 +28,7 @@ class ControllerSiswa extends Controller
                 'nama_siswa' => $siswa->nama_siswa,
                 'nis' => $siswa->nis
             ]);
-            return view('dashboardsiswa');
+            return view('siswa.dashboardsiswa');
         } else {
             return back()->withErrors(['login' => 'Username atau Password salah.']);
         }
@@ -40,34 +40,57 @@ class ControllerSiswa extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('dashboardsiswa');
+        $siswa = Siswa::where('id_siswa', session('siswa_id'))->first();
+
+        return view('siswa.dashboardsiswa', compact('siswa'));
     }
 
-    public function lihatjadwal()
+    public function lihatJadwal()
     {
         if (!session()->has('siswa_id')) {
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('lihatjadwal');
+        return view('siswa.lihatjadwalsiswa');
     }
 
-    public function accjadwal()
+    public function infoLab()
     {
         if (!session()->has('siswa_id')) {
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('accjadwal');
+        $labs = Labolatorium::all();
+        return view('siswa.lihatlabsiswa', compact('labs'));
     }
 
-    public function infolab()
+    public function buatLaporan()
     {
         if (!session()->has('siswa_id')) {
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('infolab');
+        return view('siswa.buatlaporansiswa');
+    }
+
+    public function lihatLaporan()
+    {
+        if (!session()->has('siswa_id')) {
+            return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
+        }
+
+        return view('siswa.lihatlaporansiswa');
+    }
+
+    public function profil()
+    {
+        if (!session()->has('siswa_id')) {
+            return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
+        }
+
+        $siswa = Siswa::where('id_siswa', session('siswa_id'))->first();
+        
+        return view('siswa.profilesiswa', compact('siswa'));
     }
 
 }
