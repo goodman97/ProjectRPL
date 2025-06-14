@@ -1,0 +1,138 @@
+body{
+    background-color: #00BFE8;
+}
+.card{
+    display: flex;
+    background-color: #AEEEEE;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    border: none;
+    width: 590px;
+    height: 800px;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.mainlogo{
+    padding-top: 70px;
+    padding-bottom: 90px;
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+    align-self: center;
+}
+.navbar{
+    background-color: #AEEEEE;
+    border: 3px solid #000000;
+    border-radius: 20px;
+    display: flex;
+    align-self: center;
+    margin-top: auto;
+}
+.logo{
+    width:32px; 
+    height:32px;
+}
+.btn{
+    margin-top: auto;
+}
+.pflogo{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px; 
+    height: 57px;
+}
+.top-bar {
+    width: 100%;
+    background-color: #00BFE8;
+    border-radius: 20px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.guru-info {
+    position: absolute;
+    top: 15px;
+    left: 230px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-align: left;
+    z-index: 2;
+}
+.pfbar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 361px; 
+    height: 57px;
+    z-index: 1;
+}
+.detail-box {
+    border: 5px solid black;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: transparent;
+    text-align: left;
+    width: 100%;
+    margin-top: 120px;
+}
+.circle-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: -50px;
+}
+.circle-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid black;
+}
+.btn-group{
+    z-index: 1;
+    gap: 30px;
+}
+.btn-logout {
+    border: 5px solid #293067;
+    background-color: #e81b00;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    border-radius: 30px;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+.btn-edit {
+    border: 5px solid #293067;
+    background-color: #00BFE8;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    border-radius: 30px;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+.wave{
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: auto;
+    z-index: 0;
+    pointer-events: none;
+}

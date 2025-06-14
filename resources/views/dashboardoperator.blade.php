@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/siswamenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/operatormenu.css') }}">
     <title>Menu Operator</title>
 </head>
 <body>
     <div class="container col-lg-4 mt-5">
         <div class="card mb-3">
+            <a class="profile" href="{{ url('/profileguru') }}">
+                <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
+            </a>
             <img src="{{ asset('asset/logo.png') }}" alt="Logo" class="mainlogo">
 
             @if(session('nama_operator'))
