@@ -45,6 +45,7 @@ body{
     right: 20px;
     width: 50px; 
     height: 57px;
+    z-index: 4;
 }
 .top-bar {
     width: 100%;
@@ -72,6 +73,16 @@ body{
     width: 361px; 
     height: 57px;
     z-index: 1;
+}
+.pf{
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 3;
 }
 .detail-box {
     border: 5px solid black;

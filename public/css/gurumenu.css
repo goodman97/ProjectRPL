@@ -73,11 +73,6 @@ body{
     height: 57px;
     z-index: 1;
 }
-.pfbar-container {
-    position: relative;
-    width: 120px;
-    height: 120px;
-}
 .pf{
     top: 20px;
     right: 20px;

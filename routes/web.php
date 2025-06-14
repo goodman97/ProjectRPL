@@ -41,6 +41,8 @@ Route::get('/lihatlabsiswa', [ControllerSiswa::class, 'infoLab'])->name('lihatla
 Route::get('/buatlaporansiswa', [ControllerSiswa::class, 'buatLaporan']);
 Route::get('/lihatlaporansiswa', [ControllerSiswa::class, 'lihatLaporan']);
 Route::get('/profilesiswa', [ControllerSiswa::class, 'profil'])->name('profilesiswa');
+Route::get('/editprofilesiswa', [ControllerSiswa::class, 'editProfile'])->name('editprofilesiswa');
+Route::post('/updateprofilesiswa', [ControllerSiswa::class, 'updateProfile'])->name('updateprofilesiswa');
 
 Route::get('/dashboardguru', [ControllerGuru::class, 'dashboard'])->name('dashboardguru');
 Route::get('/inputkelasguru', [ControllerGuru::class, 'inputKelas'])->name('inputkelasguru');
@@ -58,3 +60,5 @@ Route::get('/infoakun', [ControllerOperator::class, 'infoakun']);
 Route::get('/infolab', [ControllerOperator::class, 'statusLab'])->name('statuslab');
 Route::post('/infolab/update', [ControllerOperator::class, 'updateStatusLab'])->name('statuslab.update');
 Route::get('/profile', [ControllerOperator::class, 'profile'])->name('profile');
+Route::get('/editprofileoperator', [ControllerOperator::class, 'editProfile'])->name('editprofileoperator');
+Route::post('/updateprofileoperator', [ControllerOperator::class, 'updateProfile'])->name('updateprofileoperator');

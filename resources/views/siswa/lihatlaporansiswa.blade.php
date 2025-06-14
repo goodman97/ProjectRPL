@@ -9,6 +9,7 @@
     <div class="container col-lg-4 mt-5">
         <div class="card mb-3">
             <a class="profile" href="{{ url('/profilesiswa') }}">
+                <img src="{{ $siswa->foto ? asset('foto_siswa/' . $siswa->foto) : asset('asset/default.png') }}" alt="Foto Siswa" class="pf">
                 <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
             </a>
 

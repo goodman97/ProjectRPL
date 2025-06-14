@@ -50,7 +50,9 @@ class ControllerOperator extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }*/
 
-        return view('operator.lihatjadwal');
+        $operator = Operator::where('id_operator', session('operator_id'))->first();
+
+        return view('operator.lihatjadwal', compact('operator'));
     }
 
     public function accjadwal()
@@ -59,7 +61,9 @@ class ControllerOperator extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }*/
 
-        return view('operator.accjadwal');
+        $operator = Operator::where('id_operator', session('operator_id'))->first();
+
+        return view('operator.accjadwal', compact('operator'));
     }
 
     public function statusLab()
@@ -68,8 +72,10 @@ class ControllerOperator extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
+        $operator = Operator::where('id_operator', session('operator_id'))->first();
         $labs = Labolatorium::all();
-        return view('operator.infolab', compact('labs'));
+
+        return view('operator.infolab', compact('labs', 'operator'));
     }
 
     public function updateStatusLab(Request $request)
@@ -79,6 +85,7 @@ class ControllerOperator extends Controller
             'status' => 'required|in:Tersedia,Tidak tersedia'
         ]);
 
+        $operator = Operator::where('id_operator', session('operator_id'))->first();
         $lab = Labolatorium::find($request->id_lab);
         $lab->status = $request->status;
         $lab->save();
@@ -95,5 +102,34 @@ class ControllerOperator extends Controller
         $operator = Operator::where('id_operator', session('operator_id'))->first();
 
         return view('operator.profile', compact('operator'));
+    }
+
+    public function editProfile()
+    {
+        if (!session()->has('operator_id')) return redirect('/login');
+        $operator = Operator::where('id_operator', session('operator_id'))->first();
+        return view('operator.editprofileoperator', compact('operator'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        $operator = Operator::where('id_operator', session('operator_id'))->first();
+        $operator->email = $request->email;
+
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('foto_operator'), $filename);
+            $operator->foto = $filename;
+        }
+
+        $operator->save();
+
+        return redirect('/profile')->with('success', 'Profil berhasil diperbarui.');
     }
 }

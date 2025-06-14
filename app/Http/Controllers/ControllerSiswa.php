@@ -51,7 +51,9 @@ class ControllerSiswa extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('siswa.lihatjadwalsiswa');
+        $siswa = Siswa::where('id_siswa', session('siswa_id'))->first();
+
+        return view('siswa.lihatjadwalsiswa', compact('siswa'));
     }
 
     public function infoLab()
@@ -59,9 +61,11 @@ class ControllerSiswa extends Controller
         if (!session()->has('siswa_id')) {
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
-
+        
+        $siswa = Siswa::where('id_siswa', session('siswa_id'))->first();
         $labs = Labolatorium::all();
-        return view('siswa.lihatlabsiswa', compact('labs'));
+
+        return view('siswa.lihatlabsiswa', compact('labs', 'siswa'));
     }
 
     public function buatLaporan()
@@ -70,7 +74,9 @@ class ControllerSiswa extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('siswa.buatlaporansiswa');
+        $siswa = Siswa::where('id_siswa', session('siswa_id'))->first();
+
+        return view('siswa.buatlaporansiswa', compact('siswa'));
     }
 
     public function lihatLaporan()
@@ -79,7 +85,9 @@ class ControllerSiswa extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        return view('siswa.lihatlaporansiswa');
+        $siswa = Siswa::where('id_siswa', session('siswa_id'))->first();
+
+        return view('siswa.lihatlaporansiswa', compact('siswa'));
     }
 
     public function profil()
@@ -93,5 +101,32 @@ class ControllerSiswa extends Controller
         return view('siswa.profilesiswa', compact('siswa'));
     }
 
-}
+    public function editProfile()
+    {
+        if (!session()->has('siswa_id')) return redirect('/login');
+        $siswa = Siswa::where('id_siswa', session('siswa_id'))->first();
+        return view('siswa.editprofilesiswa', compact('siswa'));
+    }
 
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        $siswa = Siswa::where('id_siswa', session('siswa_id'))->first();
+        $siswa->email = $request->email;
+
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('foto_siswa'), $filename);
+            $siswa->foto = $filename;
+        }
+
+        $siswa->save();
+
+        return redirect('/profilesiswa')->with('success', 'Profil berhasil diperbarui.');
+    }
+}

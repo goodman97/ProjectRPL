@@ -10,6 +10,7 @@
     <div class="card mb-3">
 
             <a class="profile" href="{{ url('/dashboardoperator') }}">
+                <img src="{{ $operator->foto ? asset('foto_operator/' . $operator->foto) : asset('asset/default.png') }}" alt="Foto operator" class="pf">
                 <img src="{{ asset('asset/profilebar.png') }}" alt="Logo" class="pfbar">
                 <div class="operator-info">
                     <p><strong>{{ $operator->nama }}</strong></p>
@@ -24,7 +25,7 @@
         </div>
 
         <div class="btn-group mt-3 mb-3">
-            <a href="#" class="btn-edit btn-primary">Edit Profil (belum dibuat)</a>
+            <a href="{{ url('/editprofileoperator') }}" class="btn-edit btn-primary">Edit Profil (belum dibuat)</a>
             <a href="/logout" class="btn-logout btn-danger">Logout</a>
         </div>
         <img src="{{ asset('asset/wave.png') }}" alt="Wave" class="wave">
