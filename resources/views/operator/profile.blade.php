@@ -25,7 +25,7 @@
         </div>
 
         <div class="btn-group mt-3 mb-3">
-            <a href="{{ url('/editprofileoperator') }}" class="btn-edit btn-primary">Edit Profil (belum dibuat)</a>
+            <a href="{{ url('/editprofileoperator') }}" class="btn-edit btn-primary">Edit Profil</a>
             <a href="/logout" class="btn-logout btn-danger">Logout</a>
         </div>
         <img src="{{ asset('asset/wave.png') }}" alt="Wave" class="wave">

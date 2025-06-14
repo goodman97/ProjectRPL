@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="container col-lg-6 mt-5">
-    <div class="card p-4">
+    <div class="card-edit card p-4">
         <h3>Edit Profil</h3>
         <form method="POST" action="{{ route('updateprofileguru') }}" enctype="multipart/form-data">
             @csrf
@@ -19,8 +19,13 @@
                 <label>Foto Profil (opsional)</label>
                 <input type="file" name="foto" class="form-control">
             </div>
-            <button type="submit" class="btn btn-success">Simpan</button>
-            <a href="{{ url('/profileguru') }}" class="btn btn-secondary">Batal</a>
+
+            <img src="{{ asset('asset/wave.png') }}" alt="Wave" class="wave">
+            
+            <div class="btn-group mt-3 mb-3">
+                <button type="submit" class="btn-simpan btn-success">Simpan</button>
+                <a href="{{ url('/profileguru') }}" class="btn-batal btn-secondary">Batal</a>
+            </div>
         </form>
     </div>
 </div>

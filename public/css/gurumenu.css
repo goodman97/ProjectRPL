@@ -16,6 +16,21 @@ body{
     justify-content: space-between;
     overflow: hidden;
 }
+.card-edit {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: #AEEEEE;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    padding: 20px;
+    border: none;
+    width: 590px;
+    height: 800px;
+    overflow: hidden;
+    position: relative;
+}
 .mainlogo{
     padding-top: 70px;
     padding-bottom: 90px;
@@ -114,7 +129,7 @@ body{
     background-color: #e81b00;
     color: white;
     font-weight: bold;
-    width: 100%;
+    width: 150px;
     border-radius: 30px;
     z-index: 1;
     position: relative;
@@ -128,7 +143,7 @@ body{
     background-color: #00BFE8;
     color: white;
     font-weight: bold;
-    width: 100%;
+    width: 150px;
     border-radius: 30px;
     z-index: 1;
     position: relative;
@@ -136,6 +151,38 @@ body{
     justify-content: center;
     align-items: center;
     height: 60px;
+}
+.btn-simpan {
+    border: 5px solid #293067;
+    background-color: #28a745; /* hijau */
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    border-radius: 30px;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    bottom: -240px;
+    margin-bottom: 15px;
+}
+.btn-batal {
+    border: 5px solid #293067;
+    background-color: #dc3545; /* merah */
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    border-radius: 30px;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    bottom: -240px;
+    margin-bottom: 15px;
 }
 .wave{
     position: absolute;
