@@ -187,3 +187,91 @@ body{
     z-index: 0;
     pointer-events: none;
 }
+
+
+
+
+.lab-list {
+    margin-top: 70px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 5px;
+
+    /* sembunyikan scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.lab-list::-webkit-scrollbar {
+    display: none;
+}
+
+.lab-item {
+    border: 2px solid #000;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #DDF9FD;
+}
+
+.lab-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.lab-detail {
+    background-color: #B5F3FA;
+    border-top: 1px solid #ccc;
+}
+
+.lab-title {
+    font-weight: bold;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 32px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #9eeefb; /* Biru muda untuk "Tidak tersedia" */
+    border-radius: 34px;
+    border: 2px solid #2e2e70;
+    transition: 0.4s;
+}
+
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 6px;
+    top: 6px;
+    background-color: #2e2e70; /* Berlian biru tua */
+    border-radius: 5px;
+    transform: rotate(45deg);
+    transition: 0.4s;
+}
+
+/* Saat checkbox dicentang */
+.switch input:checked + .slider {
+    background-color: #2e2e70; /* Biru tua untuk "Tersedia" */
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(26px) rotate(45deg);
+    background-color: #9eeefb; /* Berlian biru muda */
+}

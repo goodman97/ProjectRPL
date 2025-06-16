@@ -14,13 +14,18 @@
                 <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
             </a>
             @endif
-
-            @foreach($labs as $lab)
-                
-                        <h5>{{ $lab->nama_lab }}</h5>
-                        <p>Status: <strong>{{ $lab->status }}</strong></p>
-                    
-            @endforeach
+            
+            <div class="lab-list">
+                @foreach($labs as $lab)
+                    <div class="lab-item d-flex align-items-center">
+                        <img src="{{ asset('asset/gambar_lab/' . $lab->gambar) }}" alt="Lab Image" class="lab-img">
+                        <div class="ms-3">
+                            <p class="lab-title mb-0">{{ $lab->nama_lab }}</p>
+                            <small>Status: <strong>{{ $lab->status }}</strong></small>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
 
             <nav class="navbar sticky-bottom navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">

@@ -194,3 +194,31 @@ body{
     z-index: 0;
     pointer-events: none;
 }
+
+
+
+.lab-list {
+    margin-top: 70px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 10px;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.lab-item {
+    background-color: #DDF9FD;
+    border: 2px solid #000;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.lab-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 1px solid #333;
+}

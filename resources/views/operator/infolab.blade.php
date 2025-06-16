@@ -17,24 +17,28 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
-            <div class="column">
+            <div class="lab-list">
                 @foreach($labs as $lab)
-                    
-                            <h5>{{ $lab->nama_lab }}</h5>
-                            <p>Status saat ini: <strong>{{ $lab->status }}</strong></p>
-                            <form action="{{ route('statuslab.update') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="id_lab" value="{{ $lab->id_lab }}">
-                                <select name="status" class="form-select mb-2">
-                                    <option value="Tersedia" {{ $lab->status == 'Tersedia' ? 'selected' : '' }}>Tersedia</option>
-                                    <option value="Tidak tersedia" {{ $lab->status == 'Tidak tersedia' ? 'selected' : '' }}>Tidak tersedia</option>
-                                </select>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </form>
+                <div class="lab-item mb-3">
+                    <img src="{{ asset('asset/gambar_lab/' . $lab->gambar) }}" class="lab-img mb-2" alt="Gambar Lab">
 
+                    <div class="lab-detail px-3 pb-2 pt-1 d-flex justify-content-between align-items-center">
+                        <p class="lab-title mb-0">{{ $lab->nama_lab }}</p>
+                        <form action="{{ route('statuslab.update') }}" method="POST" class="mb-0">
+                            @csrf
+                            <input type="hidden" name="id_lab" value="{{ $lab->id_lab }}">
+                            <input type="hidden" name="status" value="Tidak tersedia">
+                            <label class="switch">
+                                <input type="checkbox" name="status" value="Tersedia"
+                                    onchange="this.form.submit()" {{ $lab->status == 'Tersedia' ? 'checked' : '' }}>
+                                <span class="slider"></span>
+                            </label>
+                        </form>
+                    </div>
+                </div>
                 @endforeach
-
             </div>
+
             <nav class="navbar sticky-bottom navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
