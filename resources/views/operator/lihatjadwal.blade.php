@@ -13,10 +13,19 @@
                 <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
             </a>
 
-            @if(session('nama_operator'))
-                <p><strong>Nama:</strong> {{ session('nama_operator') }}</p>
-                <p><strong>NIS:</strong> {{ session('nis') }}</p>
-            @endif
+            <div class="jadwal-list">
+                @foreach($jadwal as $jdwl)
+                    <div class="jadwal-item d-flex align-items-center">
+                        <img src="{{ asset('asset/gambar_jadwal/' . $jdwl->gambar_jadwal) }}" alt="Jadwal Image" class="jadwal-img">
+                        <div class="ms-3">
+                            <p class="lab-title mb-0">{{ $jdwl->nama_jadwal }}</p>
+                            <small>{{ $jdwl->hari }}, </small>
+                            <small>{{ $jdwl->jam_mulai }}</small>
+                            <small> - {{ $jdwl->jam_selesai }}</small>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
 
             <nav class="navbar sticky-bottom navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">

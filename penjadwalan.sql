@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2025 at 10:59 AM
+-- Generation Time: Jun 17, 2025 at 10:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -95,15 +95,52 @@ INSERT INTO `guru` (`id_guru`, `nama`, `email`, `mapel`, `username`, `password`,
 CREATE TABLE `jadwal` (
   `id_jadwal` int(11) NOT NULL,
   `nama_jadwal` varchar(100) NOT NULL,
-  `tanggal` date NOT NULL,
+  `hari` enum('Senin','Selasa','Rabu','Kamis','Jum''at') NOT NULL,
   `jam_mulai` time NOT NULL,
   `jam_selesai` time NOT NULL,
-  `status` varchar(200) NOT NULL,
-  `id_siswa` int(11) NOT NULL,
-  `id_lab` int(11) NOT NULL,
-  `id_guru` int(11) NOT NULL,
-  `id_operator` int(11) NOT NULL
+  `status` enum('Pending','Diterima','Ditolak','') NOT NULL,
+  `gambar_jadwal` enum('pembenihan.png','pendederan.png','pembesaran.png','penangananHama.png','pemanenan.png','pakanBuatan.png','pakanAlami.png','kualitasAir.png') NOT NULL,
+  `id_siswa` int(11) DEFAULT NULL,
+  `id_lab` int(11) DEFAULT NULL,
+  `id_guru` int(11) DEFAULT NULL,
+  `id_operator` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `jadwal`
+--
+
+INSERT INTO `jadwal` (`id_jadwal`, `nama_jadwal`, `hari`, `jam_mulai`, `jam_selesai`, `status`, `gambar_jadwal`, `id_siswa`, `id_lab`, `id_guru`, `id_operator`) VALUES
+(1, 'Pembenihan XI 1', 'Kamis', '07:30:00', '08:40:00', 'Pending', 'pembenihan.png', NULL, 1, 1, 1),
+(2, 'Pembenihan XI 2', 'Kamis', '08:40:00', '09:50:00', 'Pending', 'pembenihan.png', NULL, 1, 1, 1),
+(3, 'Pembenihan XI 3', 'Kamis', '10:05:00', '11:15:00', 'Pending', 'pembenihan.png', NULL, 1, 1, 1),
+(4, 'Pendederan XI 1', 'Rabu', '07:30:00', '08:40:00', 'Pending', 'pendederan.png', NULL, 2, NULL, 1),
+(5, 'Pendederan XI 2', 'Rabu', '08:40:00', '09:50:00', 'Pending', 'pendederan.png', NULL, 2, NULL, 1),
+(6, 'Pendederan XI 3', 'Rabu', '10:05:00', '11:15:00', 'Pending', 'pendederan.png', NULL, 2, NULL, 1),
+(7, 'Pembesaran XI 1', 'Senin', '07:30:00', '08:40:00', 'Pending', 'pembesaran.png', NULL, 6, NULL, 1),
+(8, 'Pembesaran XI 2', 'Senin', '08:40:00', '09:50:00', 'Pending', 'pembesaran.png', NULL, 6, NULL, 1),
+(9, 'Pembesaran XI 3', 'Senin', '10:05:00', '11:15:00', 'Pending', 'pembesaran.png', NULL, 6, NULL, 1),
+(10, 'Pemanenan XII 1', 'Jum\'at', '07:30:00', '08:40:00', 'Pending', 'pemanenan.png', NULL, 7, NULL, 1),
+(11, 'Pemanenan XII 2', 'Jum\'at', '08:40:00', '09:50:00', 'Pending', 'pemanenan.png', NULL, 7, NULL, 1),
+(12, 'Pemanenan XII 3', 'Jum\'at', '10:05:00', '11:15:00', 'Pending', 'pemanenan.png', NULL, 7, NULL, 1),
+(13, 'Pakan Buatan X 1', 'Senin', '07:30:00', '08:40:00', 'Pending', 'pakanBuatan.png', NULL, 3, NULL, 1),
+(14, 'Pakan Buatan X 2', 'Senin', '08:40:00', '09:50:00', 'Pending', 'pakanBuatan.png', NULL, 3, NULL, 1),
+(15, 'Pakan Buatan X 3', 'Senin', '10:05:00', '11:15:00', 'Pending', 'pakanBuatan.png', NULL, 3, NULL, 1),
+(16, 'Pakan Buatan XI 1', 'Kamis', '07:30:00', '08:40:00', 'Pending', 'pakanBuatan.png', NULL, 4, NULL, 1),
+(17, 'Pakan Buatan XI 2', 'Kamis', '08:40:00', '09:50:00', 'Pending', 'pakanBuatan.png', NULL, 4, NULL, 1),
+(18, 'Pakan Buatan XI 3', 'Kamis', '10:05:00', '11:15:00', 'Pending', 'pakanBuatan.png', NULL, 4, NULL, 1),
+(19, 'Pakan Alami XI 1', 'Rabu', '07:30:00', '08:40:00', 'Pending', 'pakanAlami.png', NULL, 5, NULL, 1),
+(20, 'Pakan Alami XI 2', 'Rabu', '08:40:00', '09:50:00', 'Pending', 'pakanAlami.png', NULL, 5, NULL, 1),
+(21, 'Pakan Alami XI 3', 'Rabu', '10:05:00', '11:15:00', 'Pending', 'pakanAlami.png', NULL, 5, NULL, 1),
+(22, 'Pengendalian Hama dan Penyakit XI 1', 'Selasa', '07:30:00', '08:40:00', 'Pending', 'penangananHama.png', NULL, 8, NULL, 1),
+(23, 'Pengendalian Hama dan Penyakit XI 2', 'Selasa', '08:40:00', '09:50:00', 'Pending', 'penangananHama.png', NULL, 8, NULL, 1),
+(24, 'Pengendalian Hama dan Penyakit XI 3', 'Selasa', '10:05:00', '11:15:00', 'Pending', 'penangananHama.png', NULL, 8, NULL, NULL),
+(25, 'Kualitas Air X 1', 'Selasa', '07:30:00', '08:40:00', 'Pending', 'kualitasAir.png', NULL, 9, NULL, 1),
+(26, 'Kualitas Air X 2', 'Selasa', '08:40:00', '09:50:00', 'Pending', 'kualitasAir.png', NULL, 9, NULL, 1),
+(27, 'Kualitas Air X 3', 'Selasa', '10:05:00', '11:15:00', 'Pending', 'kualitasAir.png', NULL, 9, NULL, 1),
+(28, 'Kualitas Air XI 1', 'Jum\'at', '07:30:00', '08:40:00', 'Pending', 'kualitasAir.png', NULL, 10, NULL, 1),
+(29, 'Kualitas Air XI 2', 'Jum\'at', '08:40:00', '09:50:00', 'Pending', 'kualitasAir.png', NULL, 10, NULL, 1),
+(30, 'Kualitas Air XI 3', 'Jum\'at', '10:05:00', '11:15:00', 'Pending', 'kualitasAir.png', NULL, 10, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -162,10 +199,10 @@ INSERT INTO `labolatorium` (`id_lab`, `nama_lab`, `status`, `gambar`) VALUES
 (2, 'Pendederan', 'Tersedia', 'pendederan.png'),
 (3, 'Pakan Buatan 1', 'Tersedia', 'pakanBuatan.png'),
 (4, 'Pakan Buatan 2', 'Tidak tersedia', 'pakanBuatan.png'),
-(5, 'Pakan Alami', 'Tidak tersedia', 'pakanAlami.png'),
+(5, 'Pakan Alami', 'Tersedia', 'pakanAlami.png'),
 (6, 'Pembesaran', 'Tersedia', 'pembesaran.png'),
-(7, 'Pemanenan', 'Tersedia', 'pemanenan.png'),
-(8, 'Pengendalian Hama & Penyakit', 'Tidak tersedia', 'penangananHama.png'),
+(7, 'Pemanenan', 'Tidak tersedia', 'pemanenan.png'),
+(8, 'Pengendalian Hama & Penyakit', 'Tersedia', 'penangananHama.png'),
 (9, 'Kualitas Air 1', 'Tidak tersedia', 'kualitasAir.png'),
 (10, 'Kualitas Air 2', 'Tidak tersedia', 'kualitasAir.png');
 
@@ -225,7 +262,7 @@ CREATE TABLE `operator` (
 --
 
 INSERT INTO `operator` (`id_operator`, `nama`, `email`, `username`, `password`, `foto`, `id_role`) VALUES
-(1, 'Reyhan', 'reyhan@gmail.com', 'Mas Rey', 'admin123', 0x313735303035313238372e6a706567, 1);
+(1, 'Reyhan', 'reyrey@gmail.com', 'Mas Rey', 'admin123', 0x313735303035313238372e6a706567, 1);
 
 -- --------------------------------------------------------
 
@@ -279,7 +316,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('oA2Q5tNdjHsSrcdzjEzV4PhEfHwcSg6DFBcjfLGV', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo4OntzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyOToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2luZm9sYWIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiT05mc1pVaTZhNmxnM1hic1c4bUowRkNMcndKOUtKU3Z5aWMwbzFmWiI7czo3OiJ1c2VyX2lkIjtpOjE7czo4OiJ1c2VybmFtZSI7czo3OiJNYXMgUmV5IjtzOjQ6InJvbGUiO3M6ODoib3BlcmF0b3IiO3M6MTE6Im9wZXJhdG9yX2lkIjtpOjE7czo3OiJndXJ1X2lkIjtpOjE7fQ==', 1750064339);
+('wdRueG45JoTmYO3sbno6Mx2VbjBE9YK7k7xKmjCO', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo4OntzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2xpaGF0amFkd2FsIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo2OiJfdG9rZW4iO3M6NDA6Imd1M3M1NkVmR3dXTndTTXlDbFdrWUREUFBwdzdqdGhwQmlOVE1xVG8iO3M6NzoidXNlcl9pZCI7aToxO3M6ODoidXNlcm5hbWUiO3M6NDoiR2RtbiI7czo0OiJyb2xlIjtzOjQ6Imd1cnUiO3M6MTE6Im9wZXJhdG9yX2lkIjtpOjE7czo3OiJndXJ1X2lkIjtpOjE7fQ==', 1750150260);
 
 -- --------------------------------------------------------
 
@@ -359,12 +396,12 @@ ALTER TABLE `guru`
 --
 ALTER TABLE `jadwal`
   ADD PRIMARY KEY (`id_jadwal`),
-  ADD UNIQUE KEY `id_operator` (`id_operator`),
-  ADD UNIQUE KEY `id_guru` (`id_guru`),
-  ADD UNIQUE KEY `id_lab` (`id_lab`),
-  ADD UNIQUE KEY `id_siswa` (`id_siswa`),
-  ADD UNIQUE KEY `id_siswa_2` (`id_siswa`,`id_lab`,`id_guru`,`id_operator`),
-  ADD KEY `id_siswa_3` (`id_siswa`,`id_lab`,`id_guru`,`id_operator`);
+  ADD KEY `id_siswa_3` (`id_siswa`,`id_lab`,`id_guru`,`id_operator`),
+  ADD KEY `id_operator` (`id_operator`) USING BTREE,
+  ADD KEY `id_guru` (`id_guru`) USING BTREE,
+  ADD KEY `id_lab` (`id_lab`) USING BTREE,
+  ADD KEY `id_siswa` (`id_siswa`) USING BTREE,
+  ADD KEY `id_siswa_2` (`id_siswa`,`id_lab`,`id_guru`,`id_operator`) USING BTREE;
 
 --
 -- Indexes for table `jobs`

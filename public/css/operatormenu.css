@@ -275,3 +275,32 @@ body{
     transform: translateX(26px) rotate(45deg);
     background-color: #9eeefb; /* Berlian biru muda */
 }
+
+
+.jadwal-list {
+    margin-top: 70px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 5px;
+
+    /* sembunyikan scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.jadwal-list::-webkit-scrollbar {
+    display: none;
+}
+.jadwal-item {
+    background-color: #DDF9FD;
+    border: 2px solid #000;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+.jadwal-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 1px solid #333;
+}

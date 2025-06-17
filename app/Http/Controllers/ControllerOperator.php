@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 Use App\Models\Operator;
 use App\Models\Labolatorium;
+use App\Models\Jadwal;
 
 class ControllerOperator extends Controller
 {
@@ -46,13 +47,14 @@ class ControllerOperator extends Controller
 
     public function lihatjadwal()
     {
-        /*if (!session()->has('operator_id')) {
+        if (!session()->has('operator_id')) {
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
-        }*/
+        }
 
         $operator = Operator::where('id_operator', session('operator_id'))->first();
+        $jadwal = Jadwal::all();
 
-        return view('operator.lihatjadwal', compact('operator'));
+        return view('operator.lihatjadwal', compact('operator', 'jadwal'));
     }
 
     public function accjadwal()
