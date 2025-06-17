@@ -1,0 +1,105 @@
+body{
+    background-color: #00BFE8;
+}
+.card{
+    display: flex;
+    background-color: #AEEEEE;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    border: none;
+    width: 590px;
+    height: 800px;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.pf {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #000;
+}
+
+.pflogo{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px; 
+    height: 57px;
+    z-index: 4;
+}
+
+.lab-list {
+    margin-top: 80px;
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-right: 6px;
+}
+
+.lab-item {
+    display: flex;
+    align-items: center;
+    background-color: #DDF9FD;
+    border: 2px solid #000;
+    border-radius: 20px;
+    padding: 8px 12px;
+    gap: 10px;
+}
+
+.lab-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 1px solid #333;
+}
+
+.lab-detail {
+    flex-grow: 1;
+}
+
+.lab-title {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.lab-time {
+    font-size: 13px;
+}
+
+.lab-action {
+    display: flex;
+    gap: 7px;
+}
+
+.plus-btn, .minus-btn {
+    border: 2px solid #000;
+    background-color: #fff;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    font-weight: bold;
+    text-align: center;
+    line-height: 22px;
+    cursor: pointer;
+}
+
+.navbar{
+    background-color: #AEEEEE;
+    border: 3px solid #000000;
+    border-radius: 20px;
+    display: flex;
+    align-self: center;
+    margin-top: auto;
+}
