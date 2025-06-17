@@ -1,10 +1,71 @@
-body {
+body{
     background-color: #00BFE8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* agar form di tengah layar */
     margin: 0;
 }
-
-.container {
+.card{
+    display: flex;  
+    text-align: center;
+    justify-content: space-between;
+    background-color: #AEEEEE;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    border-radius: 20px;
     padding: 20px;
+    border: none;
+    width: 590px;
+    height: 800px;
+    overflow: hidden;
+}
+
+.card-edit {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: #AEEEEE;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    padding: 20px;
+    border: none;
+    width: 590px;
+    height: 800px;
+    overflow: hidden;
+    position: relative;
+}
+
+.mainlogo{
+    padding-top: 70px;
+    padding-bottom: 90px;
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+    align-self: center;
+}
+.navbar{
+    background-color: #AEEEEE;
+    border: 3px solid #000000;
+    border-radius: 20px;
+    display: flex;
+    align-self: center;
+    margin-top: auto;
+}
+.logo{
+    width:32px; 
+    height:32px;
+}
+
+.pflogo{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px; 
+    height: 57px;
+    z-index: 4;
 }
 
 .pf {
@@ -35,12 +96,12 @@ body {
 .jadwal-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background-color: #DDF9FD;
     border: 2px solid #000;
     border-radius: 20px;
     padding: 10px 12px;
     margin-bottom: 12px;
+    gap: 12px; /* memberi jarak antar elemen */
 }
 
 .jadwal-img {
@@ -49,7 +110,16 @@ body {
     border-radius: 12px;
     object-fit: cover;
     border: 2px solid #333;
+    flex-shrink: 0;
 }
+
+.jadwal-detail {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 .jadwal-info {
     flex: 1;
@@ -69,7 +139,8 @@ body {
 
 .jadwal-actions {
     display: flex;
-    gap: 5px;
+    align-items: center;
+    gap: 8px;
 }
 
 .jadwal-actions form {
@@ -85,6 +156,13 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+}
+
+/* Status Badge */
+.jadwal-actions .badge {
+    font-size: 12px;
+    padding: 5px 8px;
+    border-radius: 12px;
 }
 
 /* Bottom Navigation */
@@ -151,4 +229,3 @@ body {
     transform: translateX(26px) rotate(45deg);
     background-color: #9eeefb;
 }
-
