@@ -58,11 +58,15 @@ class ControllerGuru extends Controller
     public function inputJadwal()
     {
         if (!session()->has('guru_id')) {
-            return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
-        }
+        return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
+    }
 
-        $guru = Guru::where('id_guru', session('guru_id'))->first();
-        return view('guru.inputjadwalguru', compact('guru'));
+    $guru = Guru::where('id_guru', session('guru_id'))->first();
+
+    // Ambil semua jadwal milik guru ini
+    $jadwals = $guru->jadwals;
+
+    return view('guru.inputjadwalguru', compact('guru', 'jadwals'));
     }
     public function infoLab()
     {
