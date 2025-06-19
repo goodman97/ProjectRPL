@@ -12,6 +12,7 @@
             <a class="profile" href="{{ url('/dashboardoperator') }}">
                 <img src="{{ $operator->foto ? asset('foto_operator/' . $operator->foto) : asset('asset/default.png') }}" alt="Foto operator" class="pf">
                 <img src="{{ asset('asset/profilebar.png') }}" alt="Logo" class="pfbar">
+                <img src="{{ asset('asset/fishfp.png') }}" alt="Logo" class="pflogo2">
                 <div class="operator-info">
                     <p><strong>{{ $operator->nama }}</strong></p>
                 </div>

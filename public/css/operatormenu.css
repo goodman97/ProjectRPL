@@ -67,6 +67,14 @@ body{
     height: 57px;
     z-index: 4;
 }
+.pflogo2{
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    width: 39px; 
+    height: 53px;
+    z-index: 4;
+}
 .top-bar {
     width: 100%;
     background-color: #00BFE8;
@@ -90,13 +98,13 @@ body{
     position: absolute;
     top: 20px;
     right: 20px;
-    width: 361px; 
-    height: 57px;
+    width: 354px; 
+    height: 50px;
     z-index: 1;
 }
 .pf{
     top: 20px;
-    right: 20px;
+    right: 21px;
     width: 50px;
     height: 50px;
     object-fit: cover;

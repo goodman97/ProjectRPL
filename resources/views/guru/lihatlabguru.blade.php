@@ -9,10 +9,10 @@
     <div class="container col-lg-4 mt-5">
         <div class="card mb-3">
             @if($guru)
-            <a class="profile" href="{{ url('/profileguru') }}">
-                <img src="{{ $guru->foto ? asset('foto_guru/' . $guru->foto) : asset('asset/default.png') }}" alt="Foto Guru" class="pf">
-                <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
-            </a>
+                <a class="profile" href="{{ url('/profileguru') }}">
+                    <img src="{{ $guru->foto ? asset('foto_guru/' . $guru->foto) : asset('asset/default.png') }}" alt="Foto Guru" class="pf">
+                    <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
+                </a>
             @endif
             
             <div class="lab-list">

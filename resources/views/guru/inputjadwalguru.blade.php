@@ -59,10 +59,10 @@
                                 <img src="{{ asset('asset/Vector2.png') }}" alt="Logo" class="logo">
                             </a>
                             <a class="nav-link" href="{{ url('/inputjadwalguru') }}">
-                                <img src="{{ asset('asset/Vector3.png') }}" alt="Logo" class="logo">
+                                <img src="{{ asset('asset/VectorB3.png') }}" alt="Logo" class="logo">
                             </a>
                             <a class="nav-link active" href="{{ url('/lihatlabguru') }}">
-                                <img src="{{ asset('asset/VectorB4.png') }}" alt="Logo" class="logo">
+                                <img src="{{ asset('asset/Vector4.png') }}" alt="Logo" class="logo">
                             </a>
                             <a class="nav-link" href="{{ url('/lihatlaporanguru') }}">
                                 <img src="{{ asset('asset/Vector5.png') }}" alt="Logo" class="logo">
