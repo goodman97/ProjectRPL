@@ -45,8 +45,10 @@ Route::get('/editprofilesiswa', [ControllerSiswa::class, 'editProfile'])->name('
 Route::post('/updateprofilesiswa', [ControllerSiswa::class, 'updateProfile'])->name('updateprofilesiswa');
 
 Route::get('/dashboardguru', [ControllerGuru::class, 'dashboard'])->name('dashboardguru');
-Route::get('/inputkelasguru', [ControllerGuru::class, 'inputKelas'])->name('inputkelasguru');
 Route::get('/inputjadwalguru', [ControllerGuru::class, 'inputJadwal'])->name('inputjadwalguru');
+Route::post('/guru/ajukan-jadwal', [ControllerGuru::class, 'ajukanJadwal'])->name('guru.ajukanJadwal');
+Route::get('/lihatjadwalguru', [ControllerGuru::class, 'lihatJadwal'])->name('lihatjadwalguru');
+Route::post('/guru/simpan-jadwal', [ControllerGuru::class, 'simpanPermintaan'])->name('guru.simpanJadwal');
 Route::get('/lihatlabguru', [ControllerGuru::class, 'infoLab'])->name('lihatlabguru');
 Route::get('/lihatlaporanguru', [ControllerGuru::class, 'infoLaporan'])->name('lihatlaporanguru');
 Route::get('/profileguru', [ControllerGuru::class, 'profil'])->name('profileguru');
@@ -56,6 +58,7 @@ Route::post('/updateprofileguru', [ControllerGuru::class, 'updateProfile'])->nam
 Route::get('/dashboardoperator', [ControllerOperator::class, 'dashboard'])->name('dashboardoperator');
 Route::get('/lihatjadwal', [ControllerOperator::class, 'lihatjadwal'])->name('lihatjadwal');
 Route::get('/accjadwal', [ControllerOperator::class, 'accjadwal']);
+Route::post('/operator/acc-permintaan/{id}', [ControllerOperator::class, 'setujuiJadwal'])->name('operator.setujuiJadwal');
 Route::get('/infoakun', [ControllerOperator::class, 'infoakun']);
 Route::get('/infolab', [ControllerOperator::class, 'statusLab'])->name('statuslab');
 Route::post('/infolab/update', [ControllerOperator::class, 'updateStatusLab'])->name('statuslab.update');

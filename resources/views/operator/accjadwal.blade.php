@@ -18,6 +18,31 @@
 
             <!-- List Jadwal -->
             <div class="jadwal-list p-3">
+                @forelse($permintaan as $item)
+                    <div class="jadwal-item p-3 mb-3">
+                        <p><strong>Guru:</strong> {{ $item->guru->nama }}</p>
+                        <p><strong>Mapel:</strong> {{ $item->mapel->nama_mapel }}</p>
+                        <p><strong>Kelas:</strong> {{ $item->kelas->nama_kelas }}</p>
+                        <p><strong>Hari:</strong> {{ $item->hari }}</p>
+                        <p><strong>Jam:</strong> 
+                            {{ \Carbon\Carbon::parse($item->jam_mulai)->format('H.i') }} -
+                            {{ \Carbon\Carbon::parse($item->jam_selesai)->format('H.i') }}
+                        </p>
+                        <p><strong>Status:</strong> {{ $item->status }}</p>
+
+                        @if($item->status == 'Pending')
+                            <form action="{{ route('operator.setujuiJadwal', $item->id_permintaan) }}" method="POST" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-success btn-sm">Setujui</button>
+                            </form>
+                        @else
+                            <span class="text-muted">{{ $item->status == 'Diterima' ? 'Disetujui' : 'Ditolak' }}</span>
+                        @endif
+                    </div>
+                @empty
+                    <p class="text-center">Belum ada permintaan jadwal dari guru.</p>
+                @endforelse
+                
                 @foreach($jadwals as $jadwal)
                 <div class="jadwal-item mb-3">
                     <img src="{{ asset('asset/' . $jadwal->gambar_jadwal) }}" class="jadwal-img mb-2" alt="foto">

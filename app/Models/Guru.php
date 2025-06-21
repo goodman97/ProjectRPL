@@ -13,7 +13,6 @@ class Guru extends Model
     protected $fillable = [
         'nama',
         'email',
-        'mapel',
         'nip',
         'username',
         'password',
@@ -25,4 +24,9 @@ class Guru extends Model
     {
         return $this->hasMany(Jadwal::class, 'id_guru', 'id_guru');
     }
+    public function mapel()
+    {
+        return $this->belongsToMany(Mapel::class, 'guru_mapel', 'id_guru', 'id_mapel');
+    }
+
 }

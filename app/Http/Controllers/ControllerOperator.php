@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 Use App\Models\Operator;
 use App\Models\Labolatorium;
 use App\Models\Jadwal;
+Use App\Models\PermintaanJadwal;
 
 class ControllerOperator extends Controller
 {
@@ -52,21 +53,51 @@ class ControllerOperator extends Controller
         }
 
         $operator = Operator::where('id_operator', session('operator_id'))->first();
-        $jadwal = Jadwal::all();
+        $jadwals = Jadwal::all();
 
-        return view('operator.lihatjadwal', compact('operator', 'jadwal'));
+        return view('operator.lihatjadwal', compact('operator', 'jadwals'));
     }
 
-    /*public function accJadwal()
+    public function accjadwal()
     {
-        /*if (!session()->has('operator_id')) {
-            return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
+        $operator = Operator::where('id_operator', session('operator_id'))->first();
+        $permintaan = PermintaanJadwal::with('mapel', 'kelas', 'guru')->get();
+        $jadwals = Jadwal::all();
+
+        return view('operator.accjadwal', compact('operator', 'permintaan', 'jadwals'));
+    }
+
+    public function setujuiJadwal($id){
+        $permintaan = PermintaanJadwal::findOrFail($id);
+
+        // Cek bentrok
+        $bentrok = Jadwal::where('hari', $permintaan->hari)
+            ->where('jam_mulai', '<', $permintaan->jam_selesai)
+            ->where('jam_selesai', '>', $permintaan->jam_mulai)
+            ->where('id_kelas', $permintaan->id_kelas)
+            ->exists();
+
+        if ($bentrok) {
+            $permintaan->status = 'Ditolak';
+            $permintaan->catatan = 'Jadwal bentrok';
+            $permintaan->save();
+        } else {
+            Jadwal::create([
+                'id_guru' => $permintaan->id_guru,
+                'id_mapel' => $permintaan->id_mapel,
+                'id_kelas' => $permintaan->id_kelas,
+                'hari' => $permintaan->hari,
+                'jam_mulai' => $permintaan->jam_mulai,
+                'jam_selesai' => $permintaan->jam_selesai,
+                'status' => 'Aktif',
+                'gambar_jadwal' => 'default.png' // default untuk sementara
+            ]);
+            $permintaan->status = 'Diterima';
+            $permintaan->save();
         }
 
-        $operator = Operator::where('id_operator', session('operator_id'))->first();
-
-        return view('operator.accjadwal', compact('operator'));
-    }*/
+        return back();
+    }
 
     public function statusLab()
     {
@@ -135,28 +166,28 @@ class ControllerOperator extends Controller
         return redirect('/profile')->with('success', 'Profil berhasil diperbarui.');
     }
 
-    public function accjadwal()
+    /*public function accjadwal()
     {
         $operator = Operator::where('id_operator', session('operator_id'))->first();
         $jadwals = Jadwal::all();
 
         return view('operator.accjadwal', compact('operator', 'jadwals'));
-    }
+    }*/
 
     public function terimajadwal($id)
     {
-        $jadwal = Jadwal::findOrFail($id);
-        $jadwal->status = 'Diterima';
-        $jadwal->save();
+        $jadwals = Jadwal::findOrFail($id);
+        $jadwals->status = 'Diterima';
+        $jadwals->save();
 
         return redirect()->route('operator.accjadwal')->with('success', 'Status jadwal berhasil diperbarui.');
     }
 
     public function tolakJadwal($id)
     {
-        $jadwal = Jadwal::findOrFail($id);
-        $jadwal->status = 'Ditolak';
-        $jadwal->save();
+        $jadwals = Jadwal::findOrFail($id);
+        $jadwals->status = 'Ditolak';
+        $jadwals->save();
 
         return redirect()->route('operator.accjadwal')->with('success', 'Status jadwal berhasil diperbarui.');
     }
@@ -168,9 +199,9 @@ class ControllerOperator extends Controller
             'status' => 'required|in:Diterima,Ditolak'
         ]);
 
-        $jadwal = Jadwal::find($request->id_jadwal);
-        $jadwal->status = $request->status;
-        $jadwal->save();
+        $jadwals = Jadwal::find($request->id_jadwal);
+        $jadwals->status = $request->status;
+        $jadwals->save();
 
         return back()->with('success', 'Status jadwal berhasil diperbarui.');
     }

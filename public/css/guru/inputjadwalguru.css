@@ -37,7 +37,7 @@ body{
     z-index: 4;
 }
 
-.lab-list {
+.jadwal-list {
     margin-top: 80px;
     flex-grow: 1;
     overflow-y: auto;
@@ -47,7 +47,7 @@ body{
     padding-right: 6px;
 }
 
-.lab-item {
+.jadwal-item {
     display: flex;
     align-items: center;
     background-color: #DDF9FD;
@@ -57,7 +57,7 @@ body{
     gap: 10px;
 }
 
-.lab-img {
+.jadwal-img {
     width: 50px;
     height: 50px;
     border-radius: 15px;
@@ -65,20 +65,20 @@ body{
     border: 1px solid #333;
 }
 
-.lab-detail {
+.jadwal-detail {
     flex-grow: 1;
 }
 
-.lab-title {
+.jadwal-title {
     font-weight: bold;
     font-size: 14px;
 }
 
-.lab-time {
+.jadwal-time {
     font-size: 13px;
 }
 
-.lab-action {
+.jadwal-action {
     display: flex;
     gap: 7px;
 }

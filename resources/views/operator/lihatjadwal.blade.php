@@ -14,14 +14,14 @@
             </a>
 
             <div class="jadwal-list">
-                @foreach($jadwal as $jdwl)
+                @foreach($jadwals as $jadwal)
                     <div class="jadwal-item d-flex align-items-center">
-                        <img src="{{ asset('asset/gambar_jadwal/' . $jdwl->gambar_jadwal) }}" alt="Jadwal Image" class="jadwal-img">
+                        <img src="{{ asset('asset/gambar_jadwal/' . $jadwal->gambar_jadwal) }}" alt="Jadwal Image" class="jadwal-img">
                         <div class="ms-3">
-                            <p class="lab-title mb-0">{{ $jdwl->nama_jadwal }}</p>
-                            <small>{{ $jdwl->hari }}, </small>
-                            <small>{{ $jdwl->jam_mulai }}</small>
-                            <small> - {{ $jdwl->jam_selesai }}</small>
+                            <p class="lab-title mb-0">{{ $jadwal->nama_jadwal }}</p>
+                            <small>{{ $jadwal->hari }}, </small>
+                            <small>{{ $jadwal->jam_mulai }}</small>
+                            <small> - {{ $jadwal->jam_selesai }}</small>
                         </div>
                     </div>
                 @endforeach

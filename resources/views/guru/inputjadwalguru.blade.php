@@ -18,23 +18,33 @@
         </a>
 
         <!-- Daftar Jadwal Praktikum -->
-        <div class="lab-list">
+        <div class="jadwal-list">
             @foreach($jadwals as $jadwal)
-            <div class="lab-item">
-                <img src="{{ asset('asset/' . $jadwal->gambar_jadwal) }}" alt="{{ $jadwal->nama_jadwal }}" class="lab-img">
-                <div class="lab-detail">
-                    <div class="lab-title">{{ $jadwal->nama_jadwal }}</div>
-                    <div class="lab-time">
-                        {{ $jadwal->hari }},
-                        {{ \Carbon\Carbon::parse($jadwal->jam_mulai)->format('H.i') }}–{{ \Carbon\Carbon::parse($jadwal->jam_selesai)->format('H.i') }}
+                <div class="jadwal-item">
+                    <img src="{{ asset('asset/gambar_jadwal/' . $jadwal->gambar_jadwal) }}" alt="{{ $jadwal->nama_jadwal }}" class="jadwal-img">
+
+                    <div class="jadwal-detail">
+                        <div class="jadwal-title">{{ $jadwal->nama_jadwal }}</div>
+                        <div class="jadwal-time">
+                            {{ $jadwal->hari }},
+                            {{ \Carbon\Carbon::parse($jadwal->jam_mulai)->format('H.i') }}–{{ \Carbon\Carbon::parse($jadwal->jam_selesai)->format('H.i') }}
+                        </div>
+                        <div class="jadwal-status">Status: {{ $jadwal->status }}</div>
                     </div>
-                    <div class="lab-status">Status: {{ $jadwal->status }}</div>
+
+                    <div class="jadwal-action">
+                        <form action="{{ route('guru.ajukanJadwal') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="id_mapel" value="{{ $jadwal->id_mapel }}">
+                            <input type="hidden" name="id_kelas" value="{{ $jadwal->id_kelas }}">
+                            <input type="hidden" name="hari" value="{{ $jadwal->hari }}">
+                            <input type="hidden" name="jam_mulai" value="{{ $jadwal->jam_mulai }}">
+                            <input type="hidden" name="jam_selesai" value="{{ $jadwal->jam_selesai }}">
+                            <button type="submit" class="plus-btn">+</button>
+                        </form>
+                        <button class="minus-btn" disabled>−</button>
+                    </div>
                 </div>
-                <div class="lab-action">
-                    <button class="plus-btn">+</button>
-                    <button class="minus-btn">−</button>
-                </div>
-            </div>
             @endforeach
         </div>
 
@@ -45,11 +55,11 @@
                             <a class="nav-link" href="{{ url('/dashboardguru') }}">
                                 <img src="{{ asset('asset/Vector1.png') }}" alt="Logo" class="logo">
                             </a>
-                            <a class="nav-link" href="{{ url('/inputkelasguru') }}">
-                                <img src="{{ asset('asset/Vector2.png') }}" alt="Logo" class="logo">
-                            </a>
                             <a class="nav-link" href="{{ url('/inputjadwalguru') }}">
-                                <img src="{{ asset('asset/VectorB3.png') }}" alt="Logo" class="logo">
+                                <img src="{{ asset('asset/VectorB2.png') }}" alt="Logo" class="logo">
+                            </a>
+                            <a class="nav-link" href="{{ url('/lihatjadwalguru') }}">
+                                <img src="{{ asset('asset/Vector3.png') }}" alt="Logo" class="logo">
                             </a>
                             <a class="nav-link active" href="{{ url('/lihatlabguru') }}">
                                 <img src="{{ asset('asset/Vector4.png') }}" alt="Logo" class="logo">

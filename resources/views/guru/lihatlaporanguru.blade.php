@@ -19,10 +19,10 @@
                             <a class="nav-link" href="{{ url('/dashboardguru') }}">
                                 <img src="{{ asset('asset/Vector1.png') }}" alt="Logo" class="logo">
                             </a>
-                            <a class="nav-link" href="{{ url('/inputkelasguru') }}">
+                            <a class="nav-link" href="{{ url('/inputjadwalguru') }}">
                                 <img src="{{ asset('asset/Vector2.png') }}" alt="Logo" class="logo">
                             </a>
-                            <a class="nav-link" href="{{ url('/inputjadwalguru') }}">
+                            <a class="nav-link" href="{{ url('/lihatjadwalguru') }}">
                                 <img src="{{ asset('asset/Vector3.png') }}" alt="Logo" class="logo">
                             </a>
                             <a class="nav-link" href="{{ url('/lihatlabguru') }}">
