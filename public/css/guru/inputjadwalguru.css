@@ -103,3 +103,7 @@ body{
     align-self: center;
     margin-top: auto;
 }
+.logo{
+    width:32px; 
+    height:32px;
+}

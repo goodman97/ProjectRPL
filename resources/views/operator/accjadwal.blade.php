@@ -67,13 +67,13 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                             <a class="nav-link" href="{{ url('/dashboardoperator') }}">
-                                <img src="{{ asset('asset/VectorB1.png') }}" class="logo" alt="Logo">
+                                <img src="{{ asset('asset/Vector1.png') }}" class="logo" alt="Logo">
                             </a>
                             <a class="nav-link" href="{{ url('/lihatjadwal') }}">
                                 <img src="{{ asset('asset/Vector3.png') }}" class="logo" alt="Logo">
                             </a>
                             <a class="nav-link active" href="{{ url('/accjadwal') }}">
-                                <img src="{{ asset('asset/Vector7.png') }}" class="logo" alt="Logo">
+                                <img src="{{ asset('asset/VectorB7.png') }}" class="logo" alt="Logo">
                             </a>
                             <a class="nav-link" href="{{ url('/infolab') }}">
                                 <img src="{{ asset('asset/Vector4.png') }}" class="logo" alt="Logo">
