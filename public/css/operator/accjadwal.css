@@ -1,0 +1,231 @@
+body{
+    background-color: #00BFE8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* agar form di tengah layar */
+    margin: 0;
+}
+.card{
+    display: flex;  
+    text-align: center;
+    justify-content: space-between;
+    background-color: #AEEEEE;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    border-radius: 20px;
+    padding: 20px;
+    border: none;
+    width: 590px;
+    height: 800px;
+    overflow: hidden;
+}
+
+.card-edit {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: #AEEEEE;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    padding: 20px;
+    border: none;
+    width: 590px;
+    height: 800px;
+    overflow: hidden;
+    position: relative;
+}
+
+.mainlogo{
+    padding-top: 70px;
+    padding-bottom: 90px;
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+    align-self: center;
+}
+.navbar{
+    background-color: #AEEEEE;
+    border: 3px solid #000000;
+    border-radius: 20px;
+    display: flex;
+    align-self: center;
+    margin-top: auto;
+}
+.logo{
+    width:32px; 
+    height:32px;
+}
+
+.pflogo{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px; 
+    height: 57px;
+    z-index: 4;
+}
+
+.pf {
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 3;
+}
+
+/* List Jadwal */
+.jadwal-list {
+    margin-top: 70px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 5px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.jadwal-list::-webkit-scrollbar {
+    display: none;
+}
+
+.jadwal-item {
+    display: flex;
+    align-items: center;
+    background-color: #DDF9FD;
+    border: 2px solid #000;
+    border-radius: 20px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    gap: 12px; /* memberi jarak antar elemen */
+}
+
+.jadwal-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 2px solid #333;
+    flex-shrink: 0;
+}
+
+.jadwal-detail {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.jadwal-info {
+    flex: 1;
+    margin-left: 12px;
+}
+
+.jadwal-info strong {
+    display: block;
+    font-size: 16px;
+    color: #000;
+}
+
+.jadwal-info small {
+    color: #555;
+    font-size: 13px;
+}
+
+.jadwal-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.jadwal-actions form {
+    margin: 0;
+}
+
+.jadwal-actions .btn-sm {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+/* Status Badge */
+.jadwal-actions .badge {
+    font-size: 12px;
+    padding: 5px 8px;
+    border-radius: 12px;
+}
+
+/* Bottom Navigation */
+.nav-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #AEEEEE;
+    border-top: 2px solid #000;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 20px 20px 0 0;
+}
+
+.nav-bottom a img {
+    width: 30px;
+    height: 30px;
+}
+
+.alert {
+    margin: 10px 0;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 32px;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #9eeefb;
+    border-radius: 34px;
+    border: 2px solid #2e2e70;
+    transition: 0.4s;
+}
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 6px;
+    top: 6px;
+    background-color: #2e2e70;
+    border-radius: 5px;
+    transform: rotate(45deg);
+    transition: 0.4s;
+}
+.switch input:checked + .slider {
+    background-color: #2e2e70;
+}
+.switch input:checked + .slider::before {
+    transform: translateX(26px) rotate(45deg);
+    background-color: #9eeefb;
+}

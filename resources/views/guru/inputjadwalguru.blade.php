@@ -19,35 +19,25 @@
 
         <!-- Daftar Jadwal Praktikum -->
         <div class="lab-list">
+            @foreach($jadwals as $jadwal)
             <div class="lab-item">
-                <img src="{{ asset('asset/pembenihan.png') }}" alt="Pembenihan" class="lab-img">
+                <img src="{{ asset('asset/' . $jadwal->gambar_jadwal) }}" alt="{{ $jadwal->nama_jadwal }}" class="lab-img">
                 <div class="lab-detail">
-                    <div class="lab-title">Pembenihan X1</div>
-                    <div class="lab-time">Kamis, 07.30–09.40</div>
+                    <div class="lab-title">{{ $jadwal->nama_jadwal }}</div>
+                    <div class="lab-time">
+                        {{ $jadwal->hari }},
+                        {{ \Carbon\Carbon::parse($jadwal->jam_mulai)->format('H.i') }}–{{ \Carbon\Carbon::parse($jadwal->jam_selesai)->format('H.i') }}
+                    </div>
+                    <div class="lab-status">Status: {{ $jadwal->status }}</div>
                 </div>
                 <div class="lab-action">
                     <button class="plus-btn">+</button>
                     <button class="minus-btn">−</button>
                 </div>
             </div>
-
-            <div class="lab-item">
-                <img src="{{ asset('asset/pendederan.png') }}" alt="Pendederan" class="lab-img">
-                <div class="lab-detail">
-                    <div class="lab-title">Pendederan XI 1</div>
-                    <div class="lab-time">Senin, 09.50–11.15</div>
-                </div>
-                <div class="lab-action">
-                    <button class="plus-btn">+</button>
-                    <button class="minus-btn">−</button>
-                </div>
-            </div>
-
-            <!-- Tambah item lainnya di sini -->
-
+            @endforeach
         </div>
 
-        <!-- Navbar Bawah -->
         <nav class="navbar sticky-bottom navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -70,7 +60,8 @@
                         </div>
                     </div>
                 </div>
-            </nav>
+            </div>
+        </nav>
 
     </div>
 </div>

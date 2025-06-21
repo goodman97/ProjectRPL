@@ -57,16 +57,16 @@ class ControllerOperator extends Controller
         return view('operator.lihatjadwal', compact('operator', 'jadwal'));
     }
 
-    public function accjadwal()
+    /*public function accJadwal()
     {
         /*if (!session()->has('operator_id')) {
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
-        }*/
+        }
 
         $operator = Operator::where('id_operator', session('operator_id'))->first();
 
         return view('operator.accjadwal', compact('operator'));
-    }
+    }*/
 
     public function statusLab()
     {
@@ -134,4 +134,45 @@ class ControllerOperator extends Controller
 
         return redirect('/profile')->with('success', 'Profil berhasil diperbarui.');
     }
+
+    public function accjadwal()
+    {
+        $operator = Operator::where('id_operator', session('operator_id'))->first();
+        $jadwals = Jadwal::all();
+
+        return view('operator.accjadwal', compact('operator', 'jadwals'));
+    }
+
+    public function terimajadwal($id)
+    {
+        $jadwal = Jadwal::findOrFail($id);
+        $jadwal->status = 'Diterima';
+        $jadwal->save();
+
+        return redirect()->route('operator.accjadwal')->with('success', 'Status jadwal berhasil diperbarui.');
+    }
+
+    public function tolakJadwal($id)
+    {
+        $jadwal = Jadwal::findOrFail($id);
+        $jadwal->status = 'Ditolak';
+        $jadwal->save();
+
+        return redirect()->route('operator.accjadwal')->with('success', 'Status jadwal berhasil diperbarui.');
+    }
+
+    public function updateStatusJadwal(Request $request)
+    {
+        $request->validate([
+            'id_jadwal' => 'required|exists:jadwal,id_jadwal',
+            'status' => 'required|in:Diterima,Ditolak'
+        ]);
+
+        $jadwal = Jadwal::find($request->id_jadwal);
+        $jadwal->status = $request->status;
+        $jadwal->save();
+
+        return back()->with('success', 'Status jadwal berhasil diperbarui.');
+    }
+
 }

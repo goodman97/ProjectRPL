@@ -3,7 +3,7 @@
 <head>
     <title>Profil Guru</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/guru/gurumenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/guru/profilguru.css') }}">
 </head>
 <body>
 <div class="container col-lg-4 mt-5">

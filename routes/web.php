@@ -62,3 +62,7 @@ Route::post('/infolab/update', [ControllerOperator::class, 'updateStatusLab'])->
 Route::get('/profile', [ControllerOperator::class, 'profile'])->name('profile');
 Route::get('/editprofileoperator', [ControllerOperator::class, 'editProfile'])->name('editprofileoperator');
 Route::post('/updateprofileoperator', [ControllerOperator::class, 'updateProfile'])->name('updateprofileoperator');
+Route::post('/operator/acc-jadwal/{id}', [ControllerOperator::class, 'terimaJadwal'])->name('operator.accJadwal');
+Route::post('/operator/tolak-jadwal/{id}', [ControllerOperator::class, 'tolakJadwal'])->name('operator.tolakJadwal');
+Route::post('/operator/update-status-jadwal', [ControllerOperator::class, 'updateStatusJadwal'])->name('operator.updateStatusJadwal');
+
