@@ -67,21 +67,25 @@ class ControllerOperator extends Controller
         return view('operator.accjadwal', compact('operator', 'permintaan', 'jadwals'));
     }
 
-    public function setujuiJadwal($id){
-        $permintaan = PermintaanJadwal::findOrFail($id);
+   public function prosesJadwal(Request $request, $id)
+    {
+        $permintaan = PermintaanJadwal::with('mapel')->findOrFail($id);
 
-        // Cek bentrok
-        $bentrok = Jadwal::where('hari', $permintaan->hari)
-            ->where('jam_mulai', '<', $permintaan->jam_selesai)
-            ->where('jam_selesai', '>', $permintaan->jam_mulai)
-            ->where('id_kelas', $permintaan->id_kelas)
-            ->exists();
+        $status = $request->input('status'); // 'Diterima' atau 'Ditolak'
 
-        if ($bentrok) {
-            $permintaan->status = 'Ditolak';
-            $permintaan->catatan = 'Jadwal bentrok';
-            $permintaan->save();
-        } else {
+        if (!in_array($status, ['Diterima', 'Ditolak'])) {
+            return back()->with('error', 'Status tidak valid.');
+        }
+
+        if ($status === 'Diterima') {
+            // Ambil gambar dari jadwal lain (referensi), opsional
+            $referensi = Jadwal::where('id_mapel', $permintaan->id_mapel)
+                ->where('hari', $permintaan->hari)
+                ->first();
+
+            $gambar = $referensi->gambar_jadwal ?? 'default.png';
+
+            // Tambah ke tabel jadwal
             Jadwal::create([
                 'id_guru' => $permintaan->id_guru,
                 'id_mapel' => $permintaan->id_mapel,
@@ -90,14 +94,19 @@ class ControllerOperator extends Controller
                 'jam_mulai' => $permintaan->jam_mulai,
                 'jam_selesai' => $permintaan->jam_selesai,
                 'status' => 'Aktif',
-                'gambar_jadwal' => 'default.png' // default untuk sementara
+                'gambar_jadwal' => $gambar,
+                'nama_jadwal' => $permintaan->mapel->nama_mapel ?? 'Jadwal Praktikum'
             ]);
-            $permintaan->status = 'Diterima';
-            $permintaan->save();
         }
 
-        return back();
+        // Update status permintaan
+        $permintaan->status = $status;
+        $permintaan->catatan = $status === 'Ditolak' ? 'Ditolak oleh operator' : null;
+        $permintaan->save();
+
+        return redirect()->back()->with('success', "Permintaan jadwal berhasil di-$status.");
     }
+
 
     public function statusLab()
     {
@@ -173,24 +182,6 @@ class ControllerOperator extends Controller
 
         return view('operator.accjadwal', compact('operator', 'jadwals'));
     }*/
-
-    public function terimajadwal($id)
-    {
-        $jadwals = Jadwal::findOrFail($id);
-        $jadwals->status = 'Diterima';
-        $jadwals->save();
-
-        return redirect()->route('operator.accjadwal')->with('success', 'Status jadwal berhasil diperbarui.');
-    }
-
-    public function tolakJadwal($id)
-    {
-        $jadwals = Jadwal::findOrFail($id);
-        $jadwals->status = 'Ditolak';
-        $jadwals->save();
-
-        return redirect()->route('operator.accjadwal')->with('success', 'Status jadwal berhasil diperbarui.');
-    }
 
     public function updateStatusJadwal(Request $request)
     {

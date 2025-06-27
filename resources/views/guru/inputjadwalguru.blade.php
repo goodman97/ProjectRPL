@@ -17,7 +17,7 @@
             <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
         </a>
 
-        <!-- Daftar Jadwal Praktikum -->
+        <!-- Daftar Jadwal Praktikum --> 
         <div class="jadwal-list">
             @foreach($jadwals as $jadwal)
                 <div class="jadwal-item">
@@ -29,22 +29,25 @@
                             {{ $jadwal->hari }},
                             {{ \Carbon\Carbon::parse($jadwal->jam_mulai)->format('H.i') }}–{{ \Carbon\Carbon::parse($jadwal->jam_selesai)->format('H.i') }}
                         </div>
-                        <div class="jadwal-status">Status: {{ $jadwal->status }}</div>
+                        <div class="jadwal-status">
+                            Status: {{ $jadwal->status_permohonan ?? 'Belum Diajukan' }}
+                        </div>
+
                     </div>
 
                     <div class="jadwal-action">
-                        <form action="{{ route('guru.ajukanJadwal') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="id_mapel" value="{{ $jadwal->id_mapel }}">
-                            <input type="hidden" name="id_kelas" value="{{ $jadwal->id_kelas }}">
-                            <input type="hidden" name="hari" value="{{ $jadwal->hari }}">
-                            <input type="hidden" name="jam_mulai" value="{{ $jadwal->jam_mulai }}">
-                            <input type="hidden" name="jam_selesai" value="{{ $jadwal->jam_selesai }}">
-                            <button type="submit" class="plus-btn">+</button>
-                        </form>
-
-                        @if ($jadwal->status === 'Menunggu')
-                            <form action="{{ route('guru.batalJadwal', $jadwal->id) }}" method="POST" onsubmit="return confirm('Batalkan pengajuan jadwal ini?')">
+                        @if ($jadwal->status_permohonan === null)
+                            <form action="{{ route('guru.ajukanJadwal') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id_mapel" value="{{ $jadwal->id_mapel }}">
+                                <input type="hidden" name="id_kelas" value="{{ $jadwal->id_kelas }}">
+                                <input type="hidden" name="hari" value="{{ $jadwal->hari }}">
+                                <input type="hidden" name="jam_mulai" value="{{ $jadwal->jam_mulai }}">
+                                <input type="hidden" name="jam_selesai" value="{{ $jadwal->jam_selesai }}">
+                                <button type="submit" class="plus-btn">+</button>
+                            </form>
+                        @elseif ($jadwal->status_permohonan === 'Pending')
+                            <form action="{{ route('guru.batalJadwal', $jadwal->permintaan_id) }}" method="POST" onsubmit="return confirm('Batalkan pengajuan jadwal ini?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="minus-btn">−</button>

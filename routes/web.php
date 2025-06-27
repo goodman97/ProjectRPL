@@ -62,7 +62,7 @@ Route::post('/updateprofileguru', [ControllerGuru::class, 'updateProfile'])->nam
 Route::get('/dashboardoperator', [ControllerOperator::class, 'dashboard'])->name('dashboardoperator');
 Route::get('/lihatjadwal', [ControllerOperator::class, 'lihatjadwal'])->name('lihatjadwal');
 Route::get('/accjadwal', [ControllerOperator::class, 'accjadwal']);
-Route::post('/operator/acc-permintaan/{id}', [ControllerOperator::class, 'setujuiJadwal'])->name('operator.setujuiJadwal');
+Route::post('/operator/proses-jadwal/{id}', [ControllerOperator::class, 'prosesJadwal'])->name('operator.prosesJadwal');
 Route::get('/infoakun', [ControllerOperator::class, 'infoakun']);
 Route::get('/infolab', [ControllerOperator::class, 'statusLab'])->name('statuslab');
 Route::post('/infolab/update', [ControllerOperator::class, 'updateStatusLab'])->name('statuslab.update');

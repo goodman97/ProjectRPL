@@ -46,4 +46,16 @@ class Jadwal extends Model
     {
         return $this->belongsTo(Siswa::class, 'id_siswa', 'id_siswa');
     }
+
+    // Relasi ke Mapel
+    public function mapel()
+    {
+        return $this->belongsTo(Mapel::class, 'id_mapel');
+    }
+    
+    // Relasi ke kelas
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'id_kelas');
+    }
 }

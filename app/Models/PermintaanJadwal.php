@@ -22,9 +22,9 @@
             return $this->belongsTo(Mapel::class, 'id_mapel');
         }
 
-        /*public function kelas()
+        public function kelas()
         {
             return $this->belongsTo(Kelas::class, 'id_kelas');
-        }*/
+        }
     }
 ?>

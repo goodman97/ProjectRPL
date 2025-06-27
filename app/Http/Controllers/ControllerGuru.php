@@ -48,20 +48,37 @@ class ControllerGuru extends Controller
         return view('guru.dashboardguru', compact('guru'));
     }
 
-    public function inputJadwal(){
+    public function inputJadwal()
+    {
         if (!session()->has('guru_id')) {
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-    $guru = Guru::with('mapel')->where('id_guru', session('guru_id'))->first();
+        $guru = Guru::with('mapel')->where('id_guru', session('guru_id'))->first();
 
-    // Ambil semua ID mapel yang diampu guru
-    $mapelIds = $guru->mapel->pluck('id_mapel');
+        // Ambil semua ID mapel yang diampu guru
+        $mapelIds = $guru->mapel->pluck('id_mapel');
 
-    // Ambil semua jadwal yang terkait mapel itu
-    $jadwals = \App\Models\Jadwal::whereIn('id_mapel', $mapelIds)->get();
+        // Ambil semua jadwal yang terkait mapel itu
+        $jadwals = Jadwal::whereIn('id_mapel', $mapelIds)->get();
 
-    return view('guru.inputjadwalguru', compact('guru', 'jadwals'));
+        // Cek apakah ada pengajuan permintaan jadwal untuk setiap jadwal
+        foreach ($jadwals as $jadwal) {
+            $permintaan = PermintaanJadwal::where([
+                ['id_guru', session('guru_id')],
+                ['id_mapel', $jadwal->id_mapel],
+                ['id_kelas', $jadwal->id_kelas],
+                ['hari', $jadwal->hari],
+                ['jam_mulai', $jadwal->jam_mulai],
+                ['jam_selesai', $jadwal->jam_selesai]
+            ])->first();
+
+            // Tambahkan properti dinamis
+            $jadwal->status_permohonan = $permintaan->status ?? null;
+            $jadwal->permintaan_id = $permintaan->id_permintaan ?? null;
+        }
+
+        return view('guru.inputjadwalguru', compact('guru', 'jadwals'));
     }
 
     public function ajukanJadwal(Request $request){
@@ -83,7 +100,6 @@ class ControllerGuru extends Controller
             'status' => 'Pending'
         ]);
 
-        dd('MASUK AJUKAN');
         return redirect()->back()->with('success', 'Permintaan jadwal telah dikirim.');
     }
 
@@ -102,7 +118,7 @@ class ControllerGuru extends Controller
     }
 
     public function lihatJadwal(){
-        $jadwals = Jadwal::where('id_guru', session('guru_id'))->where('status', 'Aktif')->get();
+        $jadwals = Jadwal::with('mapel')->where('id_guru', session('guru_id'))->where('status', 'Aktif')->get();
         $guru = Guru::where('id_guru', session('guru_id'))->first();
         
         return view('guru.lihatjadwalguru', compact('jadwals', 'guru'));
