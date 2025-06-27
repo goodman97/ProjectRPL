@@ -42,7 +42,16 @@
                             <input type="hidden" name="jam_selesai" value="{{ $jadwal->jam_selesai }}">
                             <button type="submit" class="plus-btn">+</button>
                         </form>
-                        <button class="minus-btn" disabled>−</button>
+
+                        @if ($jadwal->status === 'Menunggu')
+                            <form action="{{ route('guru.batalJadwal', $jadwal->id) }}" method="POST" onsubmit="return confirm('Batalkan pengajuan jadwal ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="minus-btn">−</button>
+                            </form>
+                        @else
+                            <button class="minus-btn" disabled>−</button>
+                        @endif
                     </div>
                 </div>
             @endforeach

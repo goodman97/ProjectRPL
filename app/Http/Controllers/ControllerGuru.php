@@ -30,7 +30,8 @@ class ControllerGuru extends Controller
                 'nama_guru' => $guru->nama_guru,
                 'nip' => $guru->nip
             ]);
-            return view('guru.dashboardguru');
+            
+            return redirect()->route('dashboardguru'); // redirect bukan return view
         } else {
             return back()->withErrors(['login' => 'Username atau Password salah.']);
         }
@@ -82,30 +83,22 @@ class ControllerGuru extends Controller
             'status' => 'Pending'
         ]);
 
-        dd(PermintaanJadwal::latest()->first());
+        dd('MASUK AJUKAN');
         return redirect()->back()->with('success', 'Permintaan jadwal telah dikirim.');
     }
 
-    public function simpanPermintaan(Request $request){
-        $request->validate([
-            'id_mapel' => 'required',
-            'id_kelas' => 'required',
-            'hari' => 'required',
-            'jam_mulai' => 'required',
-            'jam_selesai' => 'required'
-        ]);
+    public function batalJadwal($id)
+    {
+        $jadwals = Jadwal::findOrFail($id);
 
-        PermintaanJadwal::create([
-            'id_guru' => session('guru_id'),
-            'id_mapel' => $request->id_mapel,
-            'id_kelas' => $request->id_kelas,
-            'hari' => $request->hari,
-            'jam_mulai' => $request->jam_mulai,
-            'jam_selesai' => $request->jam_selesai,
-            'status' => 'Pending'
-        ]);
+        // Hanya bisa dibatalkan kalau masih "Menunggu"
+        if ($jadwals->status === 'Menunggu') {
+            $jadwals->status = null; // atau bisa juga 'Dibatalkan' atau hapus record, tergantung desain
+            $jadwals->save();
+            return redirect()->back()->with('success', 'Pengajuan jadwal berhasil dibatalkan.');
+        }
 
-        return back()->with('success', 'Permintaan jadwal berhasil diajukan.');
+        return redirect()->back()->with('error', 'Jadwal sudah tidak bisa dibatalkan.');
     }
 
     public function lihatJadwal(){
