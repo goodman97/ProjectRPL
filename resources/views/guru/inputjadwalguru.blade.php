@@ -41,6 +41,7 @@
                                 @csrf
                                 <input type="hidden" name="id_mapel" value="{{ $jadwal->id_mapel }}">
                                 <input type="hidden" name="id_kelas" value="{{ $jadwal->id_kelas }}">
+                                <input type="hidden" name="id_jadwal" value="{{ $jadwal->id_jadwal }}">
                                 <input type="hidden" name="hari" value="{{ $jadwal->hari }}">
                                 <input type="hidden" name="jam_mulai" value="{{ $jadwal->jam_mulai }}">
                                 <input type="hidden" name="jam_selesai" value="{{ $jadwal->jam_selesai }}">

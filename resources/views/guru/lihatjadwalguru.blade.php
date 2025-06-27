@@ -19,7 +19,8 @@
         <div class="jadwal-list mt-3">
             @forelse($jadwals as $jadwal)
                 <div class="jadwal-item mb-4">
-                    <img src="{{ asset('asset/gambar_jadwal' . $jadwal->gambar_jadwal) }}" class="jadwal-img mb-2" alt="Gambar Jadwal">
+                <img src="{{ asset('asset/gambar_jadwal/' . ($jadwal->gambar_jadwal ?? 'default.png')) }}" class="jadwal-img mb-2" alt="Gambar Jadwal">
+
 
                     <div class="jadwal-detail px-3 pb-2">
                         <p class="jadwal-title fw-bold">{{ $jadwal->mapel->nama_mapel }}</p>
@@ -49,7 +50,7 @@
                         <a class="nav-link active" href="{{ url('/lihatjadwalguru') }}">
                             <img src="{{ asset('asset/VectorB3.png') }}" alt="Jadwal" class="logo">
                         </a>
-                        <a class="nav-link" href="{{ url('/lihatjadwalguru') }}">
+                        <a class="nav-link" href="{{ url('/lihatlabguru') }}">
                             <img src="{{ asset('asset/Vector4.png') }}" alt="Lihat Jadwal" class="logo">
                         </a>
                         <a class="nav-link" href="{{ url('/lihatlaporanguru') }}">

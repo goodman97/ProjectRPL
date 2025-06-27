@@ -85,10 +85,14 @@ class ControllerGuru extends Controller
         $request->validate([
             'id_mapel' => 'required',
             'id_kelas' => 'required',
+            'id_jadwal' => 'required',
             'hari' => 'required',
             'jam_mulai' => 'required',
             'jam_selesai' => 'required'
         ]);
+
+        $jadwals = Jadwal::find($request->id_jadwal);
+        $gambar = $jadwals->gambar_jadwal ?? 'default.png';
 
         PermintaanJadwal::create([
             'id_guru' => session('guru_id'),
@@ -97,6 +101,7 @@ class ControllerGuru extends Controller
             'hari' => $request->hari,
             'jam_mulai' => $request->jam_mulai,
             'jam_selesai' => $request->jam_selesai,
+            'gambar_jadwal' => $gambar,
             'status' => 'Pending'
         ]);
 
@@ -118,8 +123,16 @@ class ControllerGuru extends Controller
     }
 
     public function lihatJadwal(){
-        $jadwals = Jadwal::with('mapel')->where('id_guru', session('guru_id'))->where('status', 'Aktif')->get();
         $guru = Guru::where('id_guru', session('guru_id'))->first();
+
+        // Ambil semua id_mapel yang diampu guru ini
+        $mapelIds = $guru->mapel->pluck('id_mapel');
+
+        // Ambil semua jadwal yang sudah di-ACC dan mapel-nya termasuk yang diampu guru
+        $jadwals = PermintaanJadwal::with('mapel', 'kelas')
+            ->whereIn('id_mapel', $mapelIds)
+            ->where('status', 'Diterima')
+            ->get();
         
         return view('guru.lihatjadwalguru', compact('jadwals', 'guru'));
     }

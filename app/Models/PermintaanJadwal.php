@@ -26,5 +26,10 @@
         {
             return $this->belongsTo(Kelas::class, 'id_kelas');
         }
+
+        public function jadwal()
+        {
+            return $this->belongsTo(Jadwal::class, 'id_jadwal');
+        }
     }
 ?>

@@ -67,7 +67,7 @@ class ControllerOperator extends Controller
         return view('operator.accjadwal', compact('operator', 'permintaan', 'jadwals'));
     }
 
-   public function prosesJadwal(Request $request, $id)
+    public function prosesJadwal(Request $request, $id)
     {
         $permintaan = PermintaanJadwal::with('mapel')->findOrFail($id);
 
@@ -76,37 +76,20 @@ class ControllerOperator extends Controller
         if (!in_array($status, ['Diterima', 'Ditolak'])) {
             return back()->with('error', 'Status tidak valid.');
         }
+        $referensi = Jadwal::where('id_mapel', $request->id_mapel)
+            ->where('id_kelas', $request->id_kelas)
+            ->where('hari', $request->hari)
+            ->first();
 
-        if ($status === 'Diterima') {
-            // Ambil gambar dari jadwal lain (referensi), opsional
-            $referensi = Jadwal::where('id_mapel', $permintaan->id_mapel)
-                ->where('hari', $permintaan->hari)
-                ->first();
+        $gambar = $referensi->gambar_jadwal ?? 'default.png';
 
-            $gambar = $referensi->gambar_jadwal ?? 'default.png';
-
-            // Tambah ke tabel jadwal
-            Jadwal::create([
-                'id_guru' => $permintaan->id_guru,
-                'id_mapel' => $permintaan->id_mapel,
-                'id_kelas' => $permintaan->id_kelas,
-                'hari' => $permintaan->hari,
-                'jam_mulai' => $permintaan->jam_mulai,
-                'jam_selesai' => $permintaan->jam_selesai,
-                'status' => 'Aktif',
-                'gambar_jadwal' => $gambar,
-                'nama_jadwal' => $permintaan->mapel->nama_mapel ?? 'Jadwal Praktikum'
-            ]);
-        }
-
-        // Update status permintaan
+        // Cukup ubah status dan catatan
         $permintaan->status = $status;
         $permintaan->catatan = $status === 'Ditolak' ? 'Ditolak oleh operator' : null;
         $permintaan->save();
 
         return redirect()->back()->with('success', "Permintaan jadwal berhasil di-$status.");
     }
-
 
     public function statusLab()
     {
