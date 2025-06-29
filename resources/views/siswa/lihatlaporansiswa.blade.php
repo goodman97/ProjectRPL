@@ -12,6 +12,21 @@
                 <img src="{{ $siswa->foto ? asset('foto_siswa/' . $siswa->foto) : asset('asset/default.png') }}" alt="Foto Siswa" class="pf">
                 <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
             </a>
+            
+            <div class="laporan-box">
+                @foreach($laporans as $laporan)
+                    <div class="laporan-item d-flex align-items-center">
+                        <img src="{{ asset('asset/' . ($laporan->jadwal->gambar_jadwal ?? 'default.png')) }}" alt="Gambar Jadwal" class="laporan-img me-3">
+                        <div class="laporan-isi">
+                            <p class="judul">Laporan {{ $laporan->jadwal->mapel->nama_mapel ?? '-' }}</p>
+                            <p class="catatan">{{ $laporan->catatan }}</p>
+                            <p class="tanggal">Tanggal: {{ \Carbon\Carbon::parse($laporan->tanggal)->format('d-m-Y') }}</p>
+                            <a href="{{ asset('laporan_siswa/' . $laporan->hasil_praktikum) }}" download class="btn btn-download btn-outline-dark ms-auto">Download</a>
+                        </div>
+                        
+                    </div>
+                @endforeach
+            </div>
 
             <nav class="navbar sticky-bottom navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">

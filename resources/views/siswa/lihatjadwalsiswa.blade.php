@@ -9,14 +9,12 @@
 <body>
     <div class="container col-lg-4 mt-5">
         <div class="card mb-3">
-            {{-- Foto profil siswa --}}
             <a class="profile" href="{{ url('/profilesiswa') }}">
                 <img src="{{ $siswa->foto ? asset('foto_siswa/' . $siswa->foto) : asset('asset/default.png') }}" alt="Foto Siswa" class="pf">
                 <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
             </a>
 
-            {{-- Konten jadwal --}}
-            <div class="jadwal-container mt-3">
+            <div class="jadwal-list">
                 @forelse ($jadwals as $jadwal)
                     <div class="jadwal-card mb-4">
                         <img src="{{ asset('asset/' . $jadwal->gambar_jadwal) }}" class="jadwal-img mb-2" alt="Gambar Jadwal">
@@ -33,7 +31,6 @@
                 @endforelse
             </div>
 
-            {{-- Navigasi bawah --}}
             <nav class="navbar sticky-bottom navbar-expand-lg bg-body-tertiary mt-3">
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">

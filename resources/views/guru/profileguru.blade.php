@@ -24,7 +24,12 @@
             <p><strong>Guru</strong></p>
             <p>Nama: {{ $guru->nama }}</p>
             <p>NIP: {{ $guru->nip }}</p>
-            <p>Mapel: {{ $guru->mapel }}</p>
+            <p>Mapel:</p>
+                <ul>
+                    @foreach ($guru->mapel as $mapel)
+                        <li>{{ $mapel->nama_mapel }}</li>
+                    @endforeach
+                </ul>
             <p>e-mail: {{ $guru->email }}</p>
         </div>
 

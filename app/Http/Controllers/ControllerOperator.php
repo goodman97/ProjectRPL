@@ -69,21 +69,31 @@ class ControllerOperator extends Controller
 
     public function prosesJadwal(Request $request, $id)
     {
-        $permintaan = PermintaanJadwal::with('mapel')->findOrFail($id);
-
-        $status = $request->input('status'); // 'Diterima' atau 'Ditolak'
+        $permintaan = PermintaanJadwal::findOrFail($id);
+        $status = $request->input('status');
 
         if (!in_array($status, ['Diterima', 'Ditolak'])) {
             return back()->with('error', 'Status tidak valid.');
         }
-        $referensi = Jadwal::where('id_mapel', $request->id_mapel)
-            ->where('id_kelas', $request->id_kelas)
-            ->where('hari', $request->hari)
-            ->first();
 
-        $gambar = $referensi->gambar_jadwal ?? 'default.png';
+        if ($status === 'Diterima') {
+            // Ambil gambar dari tabel jadwal (yang pakai enum)
+            $jadwal = Jadwal::where('id_mapel', $permintaan->id_mapel)
+                ->where('id_kelas', $permintaan->id_kelas)
+                ->where('hari', $permintaan->hari)
+                ->where('jam_mulai', $permintaan->jam_mulai)
+                ->where('jam_selesai', $permintaan->jam_selesai)
+                ->first();
 
-        // Cukup ubah status dan catatan
+            if ($jadwal) {
+                // Enum dari jadwal yang menunjuk nama file
+                $permintaan->gambar_jadwal = $jadwal->gambar_jadwal;
+            } else {
+                // Fallback jika tidak ketemu
+                $permintaan->gambar_jadwal = 'default.png';
+            }
+        }
+
         $permintaan->status = $status;
         $permintaan->catatan = $status === 'Ditolak' ? 'Ditolak oleh operator' : null;
         $permintaan->save();

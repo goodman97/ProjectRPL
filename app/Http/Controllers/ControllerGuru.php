@@ -7,6 +7,7 @@ use App\Models\Guru;
 use App\Models\Labolatorium;
 use App\Models\PermintaanJadwal;
 Use App\Models\Jadwal;
+use App\Models\LaporanPraktikum;
 
 class ControllerGuru extends Controller
 {
@@ -56,13 +57,10 @@ class ControllerGuru extends Controller
 
         $guru = Guru::with('mapel')->where('id_guru', session('guru_id'))->first();
 
-        // Ambil semua ID mapel yang diampu guru
         $mapelIds = $guru->mapel->pluck('id_mapel');
 
-        // Ambil semua jadwal yang terkait mapel itu
         $jadwals = Jadwal::whereIn('id_mapel', $mapelIds)->get();
 
-        // Cek apakah ada pengajuan permintaan jadwal untuk setiap jadwal
         foreach ($jadwals as $jadwal) {
             $permintaan = PermintaanJadwal::where([
                 ['id_guru', session('guru_id')],
@@ -73,7 +71,6 @@ class ControllerGuru extends Controller
                 ['jam_selesai', $jadwal->jam_selesai]
             ])->first();
 
-            // Tambahkan properti dinamis
             $jadwal->status_permohonan = $permintaan->status ?? null;
             $jadwal->permintaan_id = $permintaan->id_permintaan ?? null;
         }
@@ -112,9 +109,8 @@ class ControllerGuru extends Controller
     {
         $jadwals = Jadwal::findOrFail($id);
 
-        // Hanya bisa dibatalkan kalau masih "Menunggu"
         if ($jadwals->status === 'Menunggu') {
-            $jadwals->status = null; // atau bisa juga 'Dibatalkan' atau hapus record, tergantung desain
+            $jadwals->status = null;
             $jadwals->save();
             return redirect()->back()->with('success', 'Pengajuan jadwal berhasil dibatalkan.');
         }
@@ -122,16 +118,19 @@ class ControllerGuru extends Controller
         return redirect()->back()->with('error', 'Jadwal sudah tidak bisa dibatalkan.');
     }
 
-    public function lihatJadwal(){
+    public function lihatJadwal()
+    {
+        if (!session()->has('guru_id')) {
+            return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
+        }
+
         $guru = Guru::where('id_guru', session('guru_id'))->first();
 
-        // Ambil semua id_mapel yang diampu guru ini
-        $mapelIds = $guru->mapel->pluck('id_mapel');
-
-        // Ambil semua jadwal yang sudah di-ACC dan mapel-nya termasuk yang diampu guru
-        $jadwals = PermintaanJadwal::with('mapel', 'kelas')
-            ->whereIn('id_mapel', $mapelIds)
+        $jadwals = PermintaanJadwal::with(['mapel', 'kelas'])
+            ->where('id_guru', $guru->id_guru)
             ->where('status', 'Diterima')
+            ->orderByRaw("FIELD(hari, 'Senin','Selasa','Rabu','Kamis','Jumat')")
+            ->orderBy('jam_mulai')
             ->get();
         
         return view('guru.lihatjadwalguru', compact('jadwals', 'guru'));
@@ -148,15 +147,23 @@ class ControllerGuru extends Controller
 
         return view('guru.lihatlabguru', compact('labs', 'guru'));
     }
+
     public function infoLaporan()
     {
         if (!session()->has('guru_id')) {
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        $guru = Guru::where('id_guru', session('guru_id'))->first();
+        $guru = Guru::with('mapel')->find(session('guru_id'));
 
-        return view('guru.lihatlaporanguru', compact('guru'));
+        $laporans = LaporanPraktikum::with(['siswa', 'jadwal.mapel'])
+            ->whereHas('jadwal', function ($query) use ($guru) {
+                $query->whereIn('id_mapel', $guru->mapel->pluck('id_mapel')->toArray());
+            })
+            ->orderBy('tanggal', 'desc')
+            ->get();
+
+        return view('guru.lihatlaporanguru', compact('laporans', 'guru'));
     }
 
     public function profil()

@@ -19,14 +19,13 @@ class Guru extends Model
         'foto'
     ];
 
-    // Relasi: 1 guru punya banyak jadwal
-    public function jadwals()
-    {
-        return $this->hasMany(Jadwal::class, 'id_guru', 'id_guru');
-    }
     public function mapel()
     {
         return $this->belongsToMany(Mapel::class, 'guru_mapel', 'id_guru', 'id_mapel');
     }
 
+    public function permintaanJadwal()
+    {
+        return $this->hasMany(PermintaanJadwal::class, 'id_guru', 'id_guru');
+    }
 }

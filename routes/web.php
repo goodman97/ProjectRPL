@@ -43,12 +43,13 @@ Route::get('/dashboardsiswa', [ControllerSiswa::class, 'dashboard'])->name('dash
 Route::get('/lihatjadwalsiswa', [ControllerSiswa::class, 'lihatJadwal']);
 Route::get('/lihatlabsiswa', [ControllerSiswa::class, 'infoLab'])->name('lihatlabsiswa');
 Route::get('/buatlaporansiswa', [ControllerSiswa::class, 'buatLaporan']);
+Route::post('/siswa/upload-laporan', [ControllerSiswa::class, 'uploadLaporan'])->name('siswa.uploadLaporan');
 Route::get('/lihatlaporansiswa', [ControllerSiswa::class, 'lihatLaporan']);
+Route::get('/siswa/lihat-laporan', [ControllerSiswa::class, 'lihatLaporan'])->name('siswa.lihatLaporan');
 Route::get('/profilesiswa', [ControllerSiswa::class, 'profil'])->name('profilesiswa');
 Route::get('/editprofilesiswa', [ControllerSiswa::class, 'editProfile'])->name('editprofilesiswa');
 Route::post('/updateprofilesiswa', [ControllerSiswa::class, 'updateProfile'])->name('updateprofilesiswa');
 Route::get('/lihatjadwalsiswa', [ControllerSiswa::class, 'lihatJadwal'])->name('siswa.jadwal');
-
 
 Route::get('/dashboardguru', [ControllerGuru::class, 'dashboard'])->name('dashboardguru');
 Route::get('/inputjadwalguru', [ControllerGuru::class, 'inputJadwal'])->name('inputjadwalguru');

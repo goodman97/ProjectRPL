@@ -13,6 +13,28 @@
                 <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
             </a>
 
+            <div class="laporan-list">
+                @foreach($jadwals as $jadwal)
+                    <div class="laporan-card">
+                        <div class="laporan-header">
+                            <img src="{{ asset('asset/' . $jadwal->gambar_jadwal) }}"  class="laporan-img mb-2" alt="Jadwal">
+                            <div class="info-jadwal">
+                                <h4>{{ $jadwal->mapel->nama_mapel ?? '-' }}</h4>
+                                <p>{{ $jadwal->hari }} - {{ $jadwal->jam_mulai }} s/d {{ $jadwal->jam_selesai }}</p>
+                            </div>
+                        </div>
+
+                        <form action="{{ route('siswa.uploadLaporan') }}" method="POST" enctype="multipart/form-data" class="form-upload">
+                            @csrf
+                            <input type="hidden" name="id_jadwal" value="{{ $jadwal->id_jadwal }}">
+                            <input type="file" name="hasil_praktikum" class="input-file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx" required>
+                            <button type="submit" class="btn-upload">Upload</button>
+                        </form>
+                    </div>
+                @endforeach
+            </div>
+
+
             <nav class="navbar sticky-bottom navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">

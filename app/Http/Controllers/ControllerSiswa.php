@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\Labolatorium;
 use App\Models\Jadwal;
-
+use App\Models\PermintaanJadwal;
+use App\Models\LaporanPraktikum;
 
 class ControllerSiswa extends Controller
 {
@@ -55,8 +56,7 @@ class ControllerSiswa extends Controller
 
         $siswa = Siswa::where('id_siswa', session('siswa_id'))->first();
 
-        // Ambil jadwal berdasarkan kelas siswa
-        $jadwals = Jadwal::with(['guru', 'mapel', 'kelas'])
+        $jadwals = PermintaanJadwal::with(['guru', 'mapel', 'kelas'])
             ->where('id_kelas', $siswa->id_kelas)
             ->orderByRaw("FIELD(hari, 'Senin','Selasa','Rabu','Kamis','Jumat')")
             ->orderBy('jam_mulai')
@@ -85,7 +85,38 @@ class ControllerSiswa extends Controller
 
         $siswa = Siswa::where('id_siswa', session('siswa_id'))->first();
 
-        return view('siswa.buatlaporansiswa', compact('siswa'));
+        $jadwals = Jadwal::with('mapel')
+            ->where('id_kelas', $siswa->id_kelas)
+            ->orderByRaw("FIELD(hari, 'Senin','Selasa','Rabu','Kamis','Jumat')")
+            ->orderBy('jam_mulai')
+            ->get();
+
+        return view('siswa.buatlaporansiswa', compact('siswa', 'jadwals'));
+    }
+
+    public function uploadLaporan(Request $request){
+        $request->validate([
+        'hasil_praktikum' => 'required|mimes:pdf,doc,docx,ppt,pptx,xls,xlsx|max:2048',
+        'id_jadwal' => 'required'
+        ]);
+
+        $siswaId = session('siswa_id');
+        $file = $request->file('hasil_praktikum');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('laporan_siswa'), $filename);
+
+        $total = LaporanPraktikum::where('id_jadwal', $request->id_jadwal)
+                    ->where('id_siswa', $siswaId)->count();
+
+        LaporanPraktikum::create([
+            'hasil_praktikum' => $filename,
+            'id_jadwal' => $request->id_jadwal,
+            'id_siswa' => $siswaId,
+            'catatan' => 'Laporan ke-' . ($total + 1),
+            'tanggal' => now()
+        ]);
+
+        return back()->with('success', 'Laporan berhasil dikumpulkan!');
     }
 
     public function lihatLaporan()
@@ -94,9 +125,14 @@ class ControllerSiswa extends Controller
             return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
         }
 
-        $siswa = Siswa::where('id_siswa', session('siswa_id'))->first();
+        $siswa = Siswa::find(session('siswa_id'));
 
-        return view('siswa.lihatlaporansiswa', compact('siswa'));
+        $laporans = LaporanPraktikum::with('jadwal.mapel')
+            ->where('id_siswa', $siswa->id_siswa)
+            ->orderBy('tanggal', 'desc')
+            ->get();
+
+        return view('siswa.lihatlaporansiswa', compact('laporans', 'siswa'));
     }
 
     public function profil()

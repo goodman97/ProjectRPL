@@ -15,12 +15,10 @@
                 <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
             </a>
 
-        <!-- Daftar Jadwal -->
         <div class="jadwal-list mt-3">
             @forelse($jadwals as $jadwal)
                 <div class="jadwal-item mb-4">
-                <img src="{{ asset('asset/gambar_jadwal/' . ($jadwal->gambar_jadwal ?? 'default.png')) }}" class="jadwal-img mb-2" alt="Gambar Jadwal">
-
+                <img src="{{ asset('asset/' . $jadwal->gambar_jadwal) }}" class="jadwal-img mb-2" alt="Gambar Jadwal">
 
                     <div class="jadwal-detail px-3 pb-2">
                         <p class="jadwal-title fw-bold">{{ $jadwal->mapel->nama_mapel }}</p>
@@ -36,7 +34,6 @@
             @endforelse
         </div>
 
-        <!-- Navigasi Bawah -->
         <nav class="navbar sticky-bottom navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
