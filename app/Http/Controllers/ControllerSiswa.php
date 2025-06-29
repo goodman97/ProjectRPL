@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\Labolatorium;
+use App\Models\Jadwal;
+
 
 class ControllerSiswa extends Controller
 {
@@ -53,7 +55,14 @@ class ControllerSiswa extends Controller
 
         $siswa = Siswa::where('id_siswa', session('siswa_id'))->first();
 
-        return view('siswa.lihatjadwalsiswa', compact('siswa'));
+        // Ambil jadwal berdasarkan kelas siswa
+        $jadwals = Jadwal::with(['guru', 'mapel', 'kelas'])
+            ->where('id_kelas', $siswa->id_kelas)
+            ->orderByRaw("FIELD(hari, 'Senin','Selasa','Rabu','Kamis','Jumat')")
+            ->orderBy('jam_mulai')
+            ->get();
+
+        return view('siswa.lihatjadwalsiswa', compact('jadwals', 'siswa'));
     }
 
     public function infoLab()

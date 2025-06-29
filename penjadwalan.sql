@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2025 at 06:34 PM
+-- Generation Time: Jun 28, 2025 at 06:44 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -103,6 +103,8 @@ CREATE TABLE `guru_mapel` (
 --
 
 INSERT INTO `guru_mapel` (`id_guru`, `id_mapel`) VALUES
+(1, 2),
+(1, 4),
 (3, 1),
 (3, 3);
 
@@ -115,7 +117,7 @@ INSERT INTO `guru_mapel` (`id_guru`, `id_mapel`) VALUES
 CREATE TABLE `jadwal` (
   `id_jadwal` int(11) NOT NULL,
   `nama_jadwal` varchar(100) NOT NULL,
-  `hari` enum('Senin','Selasa','Rabu','Kamis','Jum''at') NOT NULL,
+  `hari` enum('Senin','Selasa','Rabu','Kamis','Jumat') NOT NULL,
   `jam_mulai` time NOT NULL,
   `jam_selesai` time NOT NULL,
   `status` enum('Pending','Diterima','Ditolak','Aktif','Nonaktif') DEFAULT NULL,
@@ -141,9 +143,9 @@ INSERT INTO `jadwal` (`id_jadwal`, `nama_jadwal`, `hari`, `jam_mulai`, `jam_sele
 (7, 'Pembesaran XI 1', 'Senin', '07:30:00', '08:40:00', 'Pending', 'pembesaran.png', 6, 3, 1, 3, 4),
 (8, 'Pembesaran XI 2', 'Senin', '08:40:00', '09:50:00', 'Pending', 'pembesaran.png', 6, 3, 1, 3, 5),
 (9, 'Pembesaran XI 3', 'Senin', '10:05:00', '11:15:00', 'Pending', 'pembesaran.png', 6, 3, 1, 3, 6),
-(10, 'Pemanenan XII 1', 'Jum\'at', '07:30:00', '08:40:00', 'Pending', 'pemanenan.png', 7, NULL, 1, 4, 7),
-(11, 'Pemanenan XII 2', 'Jum\'at', '08:40:00', '09:50:00', 'Pending', 'pemanenan.png', 7, NULL, 1, 4, 8),
-(12, 'Pemanenan XII 3', 'Jum\'at', '10:05:00', '11:15:00', 'Pending', 'pemanenan.png', 7, NULL, 1, 4, 9),
+(10, 'Pemanenan XII 1', 'Jumat', '07:30:00', '08:40:00', 'Pending', 'pemanenan.png', 7, NULL, 1, 4, 7),
+(11, 'Pemanenan XII 2', 'Jumat', '08:40:00', '09:50:00', 'Pending', 'pemanenan.png', 7, NULL, 1, 4, 8),
+(12, 'Pemanenan XII 3', 'Jumat', '10:05:00', '11:15:00', 'Pending', 'pemanenan.png', 7, NULL, 1, 4, 9),
 (13, 'Pakan Buatan X 1', 'Senin', '07:30:00', '08:40:00', 'Pending', 'pakanBuatan.png', 3, NULL, 1, 5, 1),
 (14, 'Pakan Buatan X 2', 'Senin', '08:40:00', '09:50:00', 'Pending', 'pakanBuatan.png', 3, NULL, 1, 5, 2),
 (15, 'Pakan Buatan X 3', 'Senin', '10:05:00', '11:15:00', 'Pending', 'pakanBuatan.png', 3, NULL, 1, 5, 3),
@@ -159,11 +161,9 @@ INSERT INTO `jadwal` (`id_jadwal`, `nama_jadwal`, `hari`, `jam_mulai`, `jam_sele
 (25, 'Kualitas Air X 1', 'Selasa', '07:30:00', '08:40:00', 'Pending', 'kualitasAir.png', 9, NULL, 1, 9, 1),
 (26, 'Kualitas Air X 2', 'Selasa', '08:40:00', '09:50:00', 'Pending', 'kualitasAir.png', 9, NULL, 1, 9, 2),
 (27, 'Kualitas Air X 3', 'Selasa', '10:05:00', '11:15:00', 'Pending', 'kualitasAir.png', 9, NULL, 1, 9, 3),
-(28, 'Kualitas Air XI 1', 'Jum\'at', '07:30:00', '08:40:00', 'Pending', 'kualitasAir.png', 10, NULL, 1, 10, 4),
-(29, 'Kualitas Air XI 2', 'Jum\'at', '08:40:00', '09:50:00', 'Pending', 'kualitasAir.png', 10, NULL, 1, 10, 5),
-(30, 'Kualitas Air XI 3', 'Jum\'at', '10:05:00', '11:15:00', 'Pending', 'kualitasAir.png', 10, NULL, 1, 10, 6),
-(31, 'Pembenihan', 'Kamis', '07:30:00', '08:40:00', 'Aktif', 'pembenihan.png', NULL, 3, NULL, NULL, NULL),
-(32, 'Pembenihan', 'Kamis', '07:30:00', '08:40:00', 'Aktif', 'pembenihan.png', NULL, 3, NULL, NULL, NULL);
+(28, 'Kualitas Air XI 1', 'Jumat', '07:30:00', '08:40:00', 'Pending', 'kualitasAir.png', 10, NULL, 1, 10, 4),
+(29, 'Kualitas Air XI 2', 'Jumat', '08:40:00', '09:50:00', 'Pending', 'kualitasAir.png', 10, NULL, 1, 10, 5),
+(30, 'Kualitas Air XI 3', 'Jumat', '10:05:00', '11:15:00', 'Pending', 'kualitasAir.png', 10, NULL, 1, 10, 6);
 
 -- --------------------------------------------------------
 
@@ -252,7 +252,7 @@ INSERT INTO `labolatorium` (`id_lab`, `nama_lab`, `status`, `gambar`) VALUES
 (6, 'Pembesaran', 'Tersedia', 'pembesaran.png'),
 (7, 'Pemanenan', 'Tidak tersedia', 'pemanenan.png'),
 (8, 'Pengendalian Hama & Penyakit', 'Tidak tersedia', 'penangananHama.png'),
-(9, 'Kualitas Air 1', 'Tidak tersedia', 'kualitasAir.png'),
+(9, 'Kualitas Air 1', 'Tersedia', 'kualitasAir.png'),
 (10, 'Kualitas Air 2', 'Tidak tersedia', 'kualitasAir.png');
 
 -- --------------------------------------------------------
@@ -368,15 +368,18 @@ CREATE TABLE `permintaan_jadwal` (
   `jam_selesai` time NOT NULL,
   `status` enum('Pending','Diterima','Ditolak') DEFAULT 'Pending',
   `catatan` text DEFAULT NULL,
-  `waktu_pengajuan` timestamp NOT NULL DEFAULT current_timestamp()
+  `waktu_pengajuan` timestamp NOT NULL DEFAULT current_timestamp(),
+  `gambar_jadwal` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `permintaan_jadwal`
 --
 
-INSERT INTO `permintaan_jadwal` (`id_permintaan`, `id_guru`, `id_mapel`, `id_kelas`, `hari`, `jam_mulai`, `jam_selesai`, `status`, `catatan`, `waktu_pengajuan`) VALUES
-(4, 3, 1, 4, 'Kamis', '07:30:00', '08:40:00', 'Diterima', NULL, '2025-06-27 10:06:08');
+INSERT INTO `permintaan_jadwal` (`id_permintaan`, `id_guru`, `id_mapel`, `id_kelas`, `hari`, `jam_mulai`, `jam_selesai`, `status`, `catatan`, `waktu_pengajuan`, `gambar_jadwal`) VALUES
+(11, 1, 2, 5, 'Rabu', '08:40:00', '09:50:00', 'Diterima', NULL, '2025-06-27 17:47:41', NULL),
+(12, 1, 4, 9, 'Jumat', '10:05:00', '11:15:00', 'Diterima', NULL, '2025-06-27 17:47:46', NULL),
+(13, 3, 1, 6, 'Kamis', '10:05:00', '11:15:00', 'Diterima', NULL, '2025-06-27 17:54:04', NULL);
 
 -- --------------------------------------------------------
 
@@ -418,8 +421,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('7PxwYSzHbER9EkfF0d1m7cwrsduERrw2cpCkwmQf', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', 'YTo3OntzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2lucHV0amFkd2FsZ3VydSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NjoiX3Rva2VuIjtzOjQwOiJkM21SOThaRG5GNU0xUUFDcUlhV1JzcW5oTWwzOEVnRERZazlvVWNyIjtzOjc6InVzZXJfaWQiO2k6MztzOjg6InVzZXJuYW1lIjtzOjQ6IkVqYWEiO3M6NDoicm9sZSI7czo0OiJndXJ1IjtzOjc6Imd1cnVfaWQiO2k6Mzt9', 1751013962),
-('SnhhCit7vKZi7CxMjrhadqqwVyska9iNc7bJqDiN', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', 'YTo4OntzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2xpaGF0amFkd2FsZ3VydSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NjoiX3Rva2VuIjtzOjQwOiJjZ09zNzlaVnd1QXpGcG9zUXpleXo4bTV0ZWFFYWxvMUhrejlMeEFhIjtzOjc6InVzZXJfaWQiO2k6MTtzOjg6InVzZXJuYW1lIjtzOjc6Ik1hcyBSZXkiO3M6NDoicm9sZSI7czo4OiJvcGVyYXRvciI7czo3OiJndXJ1X2lkIjtpOjM7czoxMToib3BlcmF0b3JfaWQiO2k6MTt9', 1751020629);
+('stjy1dQs5rdiokd418NNyb0aYE7qweKleb7mQmFh', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', 'YTo4OntzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozOToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2Rhc2hib2FyZG9wZXJhdG9yIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo2OiJfdG9rZW4iO3M6NDA6IkEzeDljaHpCTFdoYmhZMXZCUlIzTkJvcnA2UTZKbkhBUkJrSGg3aGQiO3M6NzoidXNlcl9pZCI7aToxO3M6ODoidXNlcm5hbWUiO3M6NzoiTWFzIFJleSI7czo0OiJyb2xlIjtzOjg6Im9wZXJhdG9yIjtzOjc6Imd1cnVfaWQiO2k6MztzOjExOiJvcGVyYXRvcl9pZCI7aToxO30=', 1751046937);
 
 -- --------------------------------------------------------
 
@@ -623,7 +625,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -653,7 +655,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `permintaan_jadwal`
 --
 ALTER TABLE `permintaan_jadwal`
-  MODIFY `id_permintaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_permintaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`

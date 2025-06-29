@@ -1,0 +1,314 @@
+body{
+    background-color: #00BFE8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* agar form di tengah layar */
+    margin: 0;
+}
+.card{
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    background-color: #AEEEEE;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    border-radius: 20px;
+    padding: 20px;
+    border: none;
+    width: 590px;
+    height: 800px;
+    overflow: hidden;
+}
+.card-edit {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: #AEEEEE;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    padding: 20px;
+    border: none;
+    width: 590px;
+    height: 800px;
+    overflow: hidden;
+    position: relative;
+}
+.mainlogo{
+    padding-top: 70px;
+    padding-bottom: 90px;
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+    align-self: center;
+}
+.navbar{
+    background-color: #AEEEEE;
+    border: 3px solid #000000;
+    border-radius: 20px;
+    display: flex;
+    align-self: center;
+    margin-top: auto;
+}
+.logo{
+    width:32px; 
+    height:32px;
+}
+.btn{
+    margin-top: auto;
+}
+.pflogo{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px; 
+    height: 57px;
+    z-index: 4;
+}
+.pflogo2{
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    width: 39px; 
+    height: 53px;
+    z-index: 4;
+}
+.top-bar {
+    width: 100%;
+    background-color: #00BFE8;
+    border-radius: 20px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.operator-info {
+    margin-top: 15px;
+    position: absolute;
+    top: 15px;
+    left: 230px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-align: left;
+    z-index: 2;
+}
+.pfbar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 354px; 
+    height: 50px;
+    z-index: 1;
+}
+.pf{
+    top: 20px;
+    right: 21px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 3;
+}
+.detail-box {
+    border: 5px solid black;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: transparent;
+    text-align: left;
+    width: 100%;
+    margin-top: 120px;
+}
+.btn-group{
+    z-index: 1;
+    gap: 30px;
+}
+.btn-logout {
+    border: 5px solid #293067;
+    background-color: #e81b00;
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    border-radius: 30px;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+.btn-edit {
+    border: 5px solid #293067;
+    background-color: #00BFE8;
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    border-radius: 30px;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+.btn-simpan {
+    border: 5px solid #293067;
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    border-radius: 30px;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    bottom: -240px;
+    margin-bottom: 15px;
+}
+.btn-batal {
+    border: 5px solid #293067;
+    background-color: #dc3545;
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    border-radius: 30px;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    bottom: -240px;
+    margin-bottom: 15px;
+}
+.wave{
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: auto;
+    z-index: 0;
+    pointer-events: none;
+}
+
+
+
+
+.lab-list {
+    margin-top: 70px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 5px;
+
+    /* sembunyikan scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.lab-list::-webkit-scrollbar {
+    display: none;
+}
+
+.lab-item {
+    border: 2px solid #000;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #DDF9FD;
+}
+
+.lab-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.lab-detail {
+    background-color: #B5F3FA;
+    border-top: 1px solid #ccc;
+}
+
+.lab-title {
+    font-weight: bold;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 32px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #9eeefb; /* Biru muda untuk "Tidak tersedia" */
+    border-radius: 34px;
+    border: 2px solid #2e2e70;
+    transition: 0.4s;
+}
+
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 6px;
+    top: 6px;
+    background-color: #2e2e70; /* Berlian biru tua */
+    border-radius: 5px;
+    transform: rotate(45deg);
+    transition: 0.4s;
+}
+
+/* Saat checkbox dicentang */
+.switch input:checked + .slider {
+    background-color: #2e2e70; /* Biru tua untuk "Tersedia" */
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(26px) rotate(45deg);
+    background-color: #9eeefb; /* Berlian biru muda */
+}
+
+
+.jadwal-list {
+    margin-top: 70px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 5px;
+
+    /* sembunyikan scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.jadwal-list::-webkit-scrollbar {
+    display: none;
+}
+.jadwal-item {
+    background-color: #DDF9FD;
+    border: 2px solid #000;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+.jadwal-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 1px solid #333;
+}

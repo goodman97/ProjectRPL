@@ -3,7 +3,7 @@
 <head>
     <title>Profil Operator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/operatormenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css//operator/profiloperator.css') }}">
 </head>
 <body>
 <div class="container col-lg-4 mt-5">

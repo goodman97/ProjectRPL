@@ -47,6 +47,8 @@ Route::get('/lihatlaporansiswa', [ControllerSiswa::class, 'lihatLaporan']);
 Route::get('/profilesiswa', [ControllerSiswa::class, 'profil'])->name('profilesiswa');
 Route::get('/editprofilesiswa', [ControllerSiswa::class, 'editProfile'])->name('editprofilesiswa');
 Route::post('/updateprofilesiswa', [ControllerSiswa::class, 'updateProfile'])->name('updateprofilesiswa');
+Route::get('/lihatjadwalsiswa', [ControllerSiswa::class, 'lihatJadwal'])->name('siswa.jadwal');
+
 
 Route::get('/dashboardguru', [ControllerGuru::class, 'dashboard'])->name('dashboardguru');
 Route::get('/inputjadwalguru', [ControllerGuru::class, 'inputJadwal'])->name('inputjadwalguru');
