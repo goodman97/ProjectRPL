@@ -1,5 +1,6 @@
 body{
     background-color: #00BFE8;
+    font-family: 'Poppins';
 }
 .card{
     display: flex;
@@ -79,9 +80,9 @@ body{
     justify-content: space-between;
     align-items: center;
 }
-.guru-info {
+.operator-info {
     position: absolute;
-    top: 15px;
+    top: 32px;
     left: 230px;
     color: rgb(0, 0, 0);
     font-weight: bold;

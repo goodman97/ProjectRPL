@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>ACC Jadwal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('css/operator/accjadwal.css') }}">
 </head>
 <body>
