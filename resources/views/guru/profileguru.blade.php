@@ -32,13 +32,6 @@
                 </ul>
             <p>e-mail: {{ $guru->email }}</p>
         </div>
-
-        <div class="circle-icons mt-3 mb-3">
-            <img src="{{ asset('asset/circle.png') }}" class="circle-img" alt="Ikon 1">
-            <img src="{{ asset('asset/circle.png') }}" class="circle-img" alt="Ikon 2">
-            <img src="{{ asset('asset/circle.png') }}" class="circle-img" alt="Ikon 3">
-        </div>
-
         <div class="btn-group mt-3 mb-3">
             <a href="{{ url('/editprofileguru') }}" class="btn-edit btn-primary">Edit Profil</a>
             <a href="/logout" class="btn-logout btn-danger">Logout</a>
