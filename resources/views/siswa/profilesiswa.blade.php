@@ -13,8 +13,10 @@
             <a class="profile" href="{{ url('/dashboardsiswa') }}">
                 <img src="{{ $siswa->foto ? asset('foto_siswa/' . $siswa->foto) : asset('asset/default.png') }}" alt="Foto Siswa" class="pf">
                 <img src="{{ asset('asset/profilebar.png') }}" alt="Logo" class="pfbar">
+                <img src="{{ asset('asset/fishfp.png') }}" alt="Logo" class="pflogo2">
                 <div class="siswa-info">
                     <p><strong>{{ $siswa->nama }}</strong></p>
+                    <p><strong>{{ $siswa->nis }}</strong></p>
                 </div>
             </a>
 
