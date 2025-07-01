@@ -12,7 +12,7 @@ Route::post('/guru/ajukan-jadwal', function () {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 /*Route::get('/hallodunia', [TestController::class, 'show']);
