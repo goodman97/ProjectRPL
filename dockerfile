@@ -32,6 +32,7 @@ WORKDIR /var/www
 
 # Copy existing application directory contents
 COPY . /var/www
+RUN composer install --no-dev --optimize-autoloader
 
 # Copy nginx and supervisor config
 COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
