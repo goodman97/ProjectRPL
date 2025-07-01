@@ -81,12 +81,16 @@ body{
 }
 .guru-info {
     position: absolute;
-    top: 15px;
+    top: 25px;
     left: 230px;
     color: rgb(0, 0, 0);
     font-weight: bold;
     text-align: left;
     z-index: 2;
+}
+.guru-info p {
+    margin: 0;
+    line-height: 1.2;
 }
 .pfbar {
     position: absolute;
