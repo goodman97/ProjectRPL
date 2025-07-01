@@ -54,7 +54,7 @@ Route::get('/lihatjadwalsiswa', [ControllerSiswa::class, 'lihatJadwal'])->name('
 Route::get('/dashboardguru', [ControllerGuru::class, 'dashboard'])->name('dashboardguru');
 Route::get('/inputjadwalguru', [ControllerGuru::class, 'inputJadwal'])->name('inputjadwalguru');
 Route::post('/guru/ajukan-jadwal', [ControllerGuru::class, 'ajukanJadwal'])->name('guru.ajukanJadwal');
-Route::delete('/guru/batal-jadwal/{id}', [ControllerGuru::class, 'batalJadwal'])->name('guru.batalJadwal');
+Route::delete('/batal-jadwal/{id}', [ControllerGuru::class, 'batalJadwal'])->name('guru.batalJadwal');
 Route::get('/lihatjadwalguru', [ControllerGuru::class, 'lihatJadwal'])->name('lihatjadwalguru');
 Route::get('/lihatlabguru', [ControllerGuru::class, 'infoLab'])->name('lihatlabguru');
 Route::get('/lihatlaporanguru', [ControllerGuru::class, 'infoLaporan'])->name('lihatlaporanguru');

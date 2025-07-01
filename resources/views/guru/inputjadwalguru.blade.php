@@ -36,9 +36,10 @@
                     </div>
 
                     <div class="jadwal-action">
-                        @if ($jadwal->status_permohonan === null)
+                        @if (in_array($jadwal->status_permohonan, [null, 'Ditolak', 'Dibatalkan']))
                             <form action="{{ route('guru.ajukanJadwal') }}" method="POST">
                                 @csrf
+                                <input type="hidden" name="id_jadwal" value="{{ $jadwal->id_jadwal }}">
                                 <input type="hidden" name="id_mapel" value="{{ $jadwal->id_mapel }}">
                                 <input type="hidden" name="id_kelas" value="{{ $jadwal->id_kelas }}">
                                 <input type="hidden" name="id_jadwal" value="{{ $jadwal->id_jadwal }}">

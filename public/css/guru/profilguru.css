@@ -16,29 +16,6 @@ body{
     justify-content: space-between;
     overflow: hidden;
 }
-.card-edit {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    background-color: #AEEEEE;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 20px;
-    padding: 20px;
-    border: none;
-    width: 590px;
-    height: 800px;
-    overflow: hidden;
-    position: relative;
-}
-.mainlogo{
-    padding-top: 70px;
-    padding-bottom: 90px;
-    width: 200px;
-    height: auto;
-    margin-bottom: 20px;
-    align-self: center;
-}
 .navbar{
     background-color: #AEEEEE;
     border: 3px solid #000000;
@@ -66,18 +43,9 @@ body{
     position: absolute;
     top: 25px;
     right: 20px;
-    width: 39px; 
+    width: 39px;
     height: 53px;
     z-index: 4;
-}
-.top-bar {
-    width: 100%;
-    background-color: #00BFE8;
-    border-radius: 20px;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 .guru-info {
     position: absolute;
@@ -118,19 +86,6 @@ body{
     text-align: left;
     width: 100%;
     margin-top: 75px;
-}
-.circle-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: -50px;
-}
-.circle-img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid black;
 }
 .btn-group{
     z-index: 1;

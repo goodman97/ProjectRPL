@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/guru/gurumenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/guru/lihatlabguru.css') }}">
     <title>Info Lab</title>
 </head>
 <body>

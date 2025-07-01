@@ -53,4 +53,11 @@ class Jadwal extends Model
     {
         return $this->belongsTo(Kelas::class, 'id_kelas', 'id_kelas');
     }
+
+    public function permintaan()
+    {
+        return $this->hasOne(PermintaanJadwal::class, 'id_jadwal')
+            ->where('id_guru', session('guru_id'))
+            ->latest('id_permintaan');
+    }
 }

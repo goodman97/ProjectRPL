@@ -56,21 +56,16 @@ class ControllerGuru extends Controller
         }
 
         $guru = Guru::with('mapel')->where('id_guru', session('guru_id'))->first();
+        $guruId = session('guru_id');
 
-        $mapelIds = $guru->mapel->pluck('id_mapel');
-
-        $jadwals = Jadwal::whereIn('id_mapel', $mapelIds)->get();
+        $jadwals = Jadwal::where('id_guru', $guruId)
+            ->with(['permintaan' => function ($query) use ($guruId) {
+                $query->where('id_guru', $guruId)
+                    ->orderByDesc('id_permintaan');
+            }])->get();
 
         foreach ($jadwals as $jadwal) {
-            $permintaan = PermintaanJadwal::where([
-                ['id_guru', session('guru_id')],
-                ['id_mapel', $jadwal->id_mapel],
-                ['id_kelas', $jadwal->id_kelas],
-                ['hari', $jadwal->hari],
-                ['jam_mulai', $jadwal->jam_mulai],
-                ['jam_selesai', $jadwal->jam_selesai]
-            ])->first();
-
+            $permintaan = $jadwal->permintaan;
             $jadwal->status_permohonan = $permintaan->status ?? null;
             $jadwal->permintaan_id = $permintaan->id_permintaan ?? null;
         }
@@ -88,6 +83,15 @@ class ControllerGuru extends Controller
             'jam_selesai' => 'required'
         ]);
 
+        $cek = PermintaanJadwal::where([
+            ['id_jadwal', '=', $request->id_jadwal],
+            ['id_guru', '=', session('guru_id')],
+        ])->whereIn('status', ['Pending', 'Diterima'])->exists();
+
+        if ($cek) {
+            return redirect()->back()->with('error', 'Permintaan jadwal ini masih dalam proses atau sudah disetujui.');
+        }   
+
         $jadwals = Jadwal::find($request->id_jadwal);
         $gambar = $jadwals->gambar_jadwal ?? 'default.png';
 
@@ -95,6 +99,7 @@ class ControllerGuru extends Controller
             'id_guru' => session('guru_id'),
             'id_mapel' => $request->id_mapel,
             'id_kelas' => $request->id_kelas,
+            'id_jadwal' => $request->id_jadwal,
             'hari' => $request->hari,
             'jam_mulai' => $request->jam_mulai,
             'jam_selesai' => $request->jam_selesai,
@@ -107,16 +112,17 @@ class ControllerGuru extends Controller
 
     public function batalJadwal($id)
     {
-        $jadwals = Jadwal::findOrFail($id);
+        $permintaan = PermintaanJadwal::findOrFail($id);
 
-        if ($jadwals->status === 'Menunggu') {
-            $jadwals->status = null;
-            $jadwals->save();
+        if ($permintaan->status === 'Pending') {
+            $permintaan->status = 'Dibatalkan';
+            $permintaan->save();
             return redirect()->back()->with('success', 'Pengajuan jadwal berhasil dibatalkan.');
         }
 
         return redirect()->back()->with('error', 'Jadwal sudah tidak bisa dibatalkan.');
     }
+
 
     public function lihatJadwal()
     {

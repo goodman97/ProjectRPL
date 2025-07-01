@@ -15,7 +15,7 @@
                 <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
             </a>
 
-        <div class="jadwal-list mt-3">
+        <div class="jadwal-list">
             @forelse($jadwals as $jadwal)
                 <div class="jadwal-item mb-4">
                 <img src="{{ asset('asset/' . $jadwal->gambar_jadwal) }}" class="jadwal-img mb-2" alt="Gambar Jadwal">

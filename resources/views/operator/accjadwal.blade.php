@@ -10,16 +10,14 @@
     <div class="container col-lg-4 mt-5">
         <div class="card mb-3">
 
-            <!-- Profil -->
             <a class="profile" href="{{ url('/profile') }}">
                 <img src="{{ isset($operator) && $operator->foto ? asset('foto_operator/' . $operator->foto) : asset('asset/default.png') }}" alt="Foto operator" class="pf">
                 <img src="{{ asset('asset/layerpf3.png') }}" alt="Logo" class="pflogo">
             </a>
 
-            <!-- List Jadwal -->
             <div class="jadwal-list p-3">
                 @forelse($permintaan as $item)
-                    <div class="jadwal-item p-3 mb-3">
+                    <div class="jadwal-item p-3 mb-3 border rounded shadow-sm">
                         <p><strong>Guru:</strong> {{ $item->guru->nama }}</p>
                         <p><strong>Mapel:</strong> {{ $item->mapel->nama_mapel }}</p>
                         <p><strong>Kelas:</strong> {{ $item->kelas->nama_kelas }}</p>
@@ -28,9 +26,22 @@
                             {{ \Carbon\Carbon::parse($item->jam_mulai)->format('H.i') }} -
                             {{ \Carbon\Carbon::parse($item->jam_selesai)->format('H.i') }}
                         </p>
-                        <p><strong>Status:</strong> {{ $item->status }}</p>
+                        <p>
+                            <strong>Status:</strong>
+                            @if($item->status === 'Pending')
+                                <span class="badge bg-secondary">Pending</span>
+                            @elseif($item->status === 'Diterima')
+                                <span class="badge bg-success">Disetujui</span>
+                            @elseif($item->status === 'Ditolak')
+                                <span class="badge bg-danger">Ditolak</span>
+                            @elseif($item->status === 'Dibatalkan')
+                                <span class="badge bg-warning text-dark">Dibatalkan oleh Guru</span>
+                            @else
+                                <span class="badge bg-light text-dark">Status Tidak Dikenal</span>
+                            @endif
+                        </p>
 
-                       @if($item->status == 'Pending')
+                        @if($item->status === 'Pending')
                             <form action="{{ route('operator.prosesJadwal', $item->id_permintaan) }}" method="POST" class="d-inline me-2">
                                 @csrf
                                 <input type="hidden" name="status" value="Diterima">
@@ -41,8 +52,6 @@
                                 <input type="hidden" name="status" value="Ditolak">
                                 <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
                             </form>
-                        @else
-                            <span class="text-muted">{{ $item->status == 'Diterima' ? 'Disetujui' : 'Ditolak' }}</span>
                         @endif
                     </div>
                 @empty
@@ -50,7 +59,6 @@
                 @endforelse
             </div>
 
-            <!-- Bottom Navbar -->
             <nav class="navbar sticky-bottom navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">

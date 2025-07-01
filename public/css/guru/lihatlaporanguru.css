@@ -46,7 +46,6 @@ body{
     position: absolute;
     z-index: 3;
 }
-
 .laporan-box {
     margin-top: 70px;
     max-height: 70vh;
@@ -67,20 +66,17 @@ body{
     display: flex;
     align-items: center;
 }
-
 .judul {
     font-weight: bold;
     font-size: 16px;
     color: #0c4a6e;
     margin-bottom: 3px;
 }
-
 .catatan, .tanggal {
     margin: 0;
     font-size: 14px;
     color: #000;
 }
-
 .laporan-img {
     width: 120px;
     height: 120px;
@@ -88,7 +84,6 @@ body{
     object-fit: cover;
     border: 1px solid #333;
 }
-
 .btn-download {
     margin-top: 20px;;
     border: 2px solid #293067;

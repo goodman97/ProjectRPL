@@ -77,7 +77,6 @@ class ControllerOperator extends Controller
         }
 
         if ($status === 'Diterima') {
-            // Ambil gambar dari tabel jadwal (yang pakai enum)
             $jadwal = Jadwal::where('id_mapel', $permintaan->id_mapel)
                 ->where('id_kelas', $permintaan->id_kelas)
                 ->where('hari', $permintaan->hari)
@@ -86,10 +85,8 @@ class ControllerOperator extends Controller
                 ->first();
 
             if ($jadwal) {
-                // Enum dari jadwal yang menunjuk nama file
                 $permintaan->gambar_jadwal = $jadwal->gambar_jadwal;
             } else {
-                // Fallback jika tidak ketemu
                 $permintaan->gambar_jadwal = 'default.png';
             }
         }
@@ -167,14 +164,6 @@ class ControllerOperator extends Controller
 
         return redirect('/profile')->with('success', 'Profil berhasil diperbarui.');
     }
-
-    /*public function accjadwal()
-    {
-        $operator = Operator::where('id_operator', session('operator_id'))->first();
-        $jadwals = Jadwal::all();
-
-        return view('operator.accjadwal', compact('operator', 'jadwals'));
-    }*/
 
     public function updateStatusJadwal(Request $request)
     {

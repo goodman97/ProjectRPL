@@ -10,7 +10,7 @@
         protected $primaryKey = 'id_permintaan';
         public $timestamps = false;
 
-        protected $fillable = ['id_guru', 'id_mapel', 'id_kelas', 'hari', 'jam_mulai', 'jam_selesai', 'status', 'catatan'];
+        protected $fillable = ['id_guru', 'id_jadwal', 'id_mapel', 'id_kelas', 'hari', 'jam_mulai', 'jam_selesai', 'status', 'catatan'];
 
         public function guru()
         {

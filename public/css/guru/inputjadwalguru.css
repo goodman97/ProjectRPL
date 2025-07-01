@@ -16,7 +16,6 @@ body{
     justify-content: space-between;
     overflow: hidden;
 }
-
 .pf {
     position: absolute;
     top: 20px;
@@ -27,7 +26,6 @@ body{
     border-radius: 50%;
     border: 2px solid #000;
 }
-
 .pflogo{
     position: absolute;
     top: 20px;
@@ -36,7 +34,6 @@ body{
     height: 57px;
     z-index: 4;
 }
-
 .jadwal-list {
     margin-top: 80px;
     flex-grow: 1;
@@ -46,7 +43,6 @@ body{
     gap: 15px;
     padding-right: 6px;
 }
-
 .jadwal-item {
     display: flex;
     align-items: center;
@@ -56,7 +52,6 @@ body{
     padding: 8px 12px;
     gap: 10px;
 }
-
 .jadwal-img {
     width: 50px;
     height: 50px;
@@ -64,25 +59,20 @@ body{
     object-fit: cover;
     border: 1px solid #333;
 }
-
 .jadwal-detail {
     flex-grow: 1;
 }
-
 .jadwal-title {
     font-weight: bold;
     font-size: 14px;
 }
-
 .jadwal-time {
     font-size: 13px;
 }
-
 .jadwal-action {
     display: flex;
     gap: 7px;
 }
-
 .plus-btn, .minus-btn {
     border: 2px solid #000;
     background-color: #fff;
@@ -94,7 +84,6 @@ body{
     line-height: 22px;
     cursor: pointer;
 }
-
 .navbar{
     background-color: #AEEEEE;
     border: 3px solid #000000;
