@@ -7,10 +7,6 @@ use App\Http\Controllers\ControllerSiswa;
 use App\Http\Controllers\ControllerOperator;
 use App\Http\Controllers\ControllerGuru;
 
-Route::post('/guru/ajukan-jadwal', function () {
-    dd('ROUTE TEST OK');
-});
-
 Route::get('/', function () {
     return view('login');
 });
