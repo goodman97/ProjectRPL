@@ -17,7 +17,7 @@ body{
     justify-content: space-between;
     overflow: hidden;
 }
-.pf {
+.pf { 
     position: absolute;
     top: 20px;
     right: 20px;
@@ -43,6 +43,8 @@ body{
     flex-direction: column;
     gap: 15px;
     padding-right: 6px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 .jadwal-item {
     display: flex;
