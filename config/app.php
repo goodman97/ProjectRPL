@@ -123,4 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'trusted_proxies' => env('APP_TRUSTED_PROXIES', '*'),
+
 ];
